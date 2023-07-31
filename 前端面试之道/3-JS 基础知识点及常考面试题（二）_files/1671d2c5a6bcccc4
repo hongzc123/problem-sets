@@ -1,0 +1,198 @@
+_points[i] - cat_ax.labels.aLabels[i].tx.rich.content.GetSummaryHeight()/2);
+
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for(i = 0; i < cat_ax.labels.aLabels.length; ++i)
+                            {
+                                if(cat_ax.labels.aLabels[i])
+                                {
+                                    cat_ax.labels.aLabels[i].tx.rich.content.Reset(0, 0, cat_ax.labels.extX - labels_offset, 20000);
+                                    cat_ax.labels.aLabels[i].tx.rich.content.Recalculate_Page(0, true);
+                                    var transform_text = cat_ax.labels.aLabels[i].transformText;
+                                    transform_text.Reset();
+                                    global_MatrixTransformer.TranslateAppend(transform_text, cat_ax.labels.x + labels_offset, arr_cat_labels_points[i] - cat_ax.labels.aLabels[i].tx.rich.content.GetSummaryHeight()/2);
+                                  //  global_MatrixTransformer.MultiplyAppend(transform_text, this.getTransformMatrix());
+
+                                    local_text_transform = cat_ax.labels.aLabels[i].localTransformText;
+                                    local_text_transform.Reset();
+                                    global_MatrixTransformer.TranslateAppend(local_text_transform, cat_ax.labels.x + labels_offset, arr_cat_labels_points[i] - cat_ax.labels.aLabels[i].tx.rich.content.GetSummaryHeight()/2);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                cat_ax.yPoints.sort(function(a, b){return a.val - b.val});
+                val_ax.xPoints.sort(function(a, b){return a.val - b.val});
+            }
+            else{
+                this.bEmptySeries = true;
+            }
+        }
+        this.plotAreaRect = rect;
+    }
+};
+
+CChartSpace.prototype.checkAxisLabelsTransform = function()
+{
+    if(this.chart && this.chart.plotArea && this.chart.plotArea.charts[0] && this.chart.plotArea.charts[0].getAxisByTypes)
+    {
+        var oAxisByTypes = this.chart.plotArea.charts[0].getAxisByTypes();
+        var oCatAx = oAxisByTypes.catAx[0], oValAx = oAxisByTypes.valAx[0], deltaX, deltaY, i, oAxisLabels, oLabel, oNewPos;
+        var oProcessor3D = this.chartObj && this.chartObj.processor3D;
+        var aXPoints = [], aYPoints = [];
+        if(oCatAx && oValAx && oProcessor3D)
+        {
+            if(( (oCatAx.axPos === AscFormat.AX_POS_B || oCatAx.axPos === AscFormat.AX_POS_T) && oCatAx.xPoints) &&
+                ((oValAx.axPos === AscFormat.AX_POS_L || oValAx.axPos === AscFormat.AX_POS_R) && oValAx.yPoints))
+            {
+                oAxisLabels = oCatAx.labels;
+                
+                if(oAxisLabels)
+                {
+                    var dZPositionCatAxis = oProcessor3D.calculateZPositionCatAxis();
+                    var dPosY, dPosY2
+                    if(oAxisLabels.align)
+                    {
+                        dPosY = oAxisLabels.y*this.chartObj.calcProp.pxToMM;
+                        dPosY2 = oAxisLabels.y;
+                    }
+                    else
+                    {
+
+                        dPosY = (oAxisLabels.y + oAxisLabels.extY)*this.chartObj.calcProp.pxToMM;
+                        dPosY2 = oAxisLabels.y + oAxisLabels.extY;
+                    }
+                    var fBottomLabels = -100;
+                    if(!oAxisLabels.bRotated)
+                    {
+                        for(i = 0; i < oAxisLabels.aLabels.length; ++i)
+                        {
+                            oLabel = oAxisLabels.aLabels[i];
+                            if(oLabel)
+                            {
+                                var oCPosLabelX;
+                                oCPosLabelX = oLabel.localTransformText.TransformPointX(oLabel.txBody.content.XLimit/2, 0);
+                                oNewPos = oProcessor3D.convertAndTurnPoint(oCPosLabelX*this.chartObj.calcProp.pxToMM, dPosY, dZPositionCatAxis);
+                                oLabel.setPosition2(oNewPos.x/this.chartObj.calcProp.pxToMM + oLabel.localTransformText.tx - oCPosLabelX, oLabel.localTransformText.ty - dPosY2 + oNewPos.y/this.chartObj.calcProp.pxToMM );
+                                var fBottomContent = oLabel.y + oLabel.tx.rich.content.GetSummaryHeight();
+                                if(fBottomContent > fBottomLabels){
+                                    fBottomLabels = fBottomContent;
+                                }
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if(oAxisLabels.align)
+                        {
+                            var stake_offset = AscFormat.isRealNumber(oCatAx.lblOffset) ? oCatAx.lblOffset/100 : 1;
+                            var labels_offset = oCatAx.labels.aLabels[0].tx.rich.content.Content[0].CompiledPr.Pr.TextPr.FontSize*(25.4/72)*stake_offset;
+                            for(i = 0; i < oAxisLabels.aLabels.length; ++i)
+                            {
+                                if(oAxisLabels.aLabels[i])
+                                {
+                                    oLabel = oAxisLabels.aLabels[i];
+                                    var wh = {w: oLabel.widthForTransform, h: oLabel.tx.rich.content.GetSummaryHeight()}, w2, h2, x1, y0, xc, yc;
+                                    w2 = wh.w*Math.cos(Math.PI/4) + wh.h*Math.sin(Math.PI/4);
+                                    h2 = wh.w*Math.sin(Math.PI/4) + wh.h*Math.cos(Math.PI/4);
+                                    x1 = oCatAx.xPoints[i].pos + wh.h*Math.sin(Math.PI/4);
+                                    y0 = oAxisLabels.y + labels_offset;
+                                    var x1t, y0t;
+                                    var oRes = oProcessor3D.convertAndTurnPoint(x1*this.chartObj.calcProp.pxToMM, y0*this.chartObj.calcProp.pxToMM, dZPositionCatAxis);
+                                    x1t = oRes.x/this.chartObj.calcProp.pxToMM;
+                                    y0t = oRes.y/this.chartObj.calcProp.pxToMM;
+                                    xc = x1t - w2/2;
+                                    yc = y0t + h2/2;
+                                    var local_text_transform = oLabel.localTransformText;
+                                    local_text_transform.Reset();
+                                    global_MatrixTransformer.TranslateAppend(local_text_transform, -wh.w/2, -wh.h/2);
+                                    global_MatrixTransformer.RotateRadAppend(local_text_transform, Math.PI/4);
+                                    global_MatrixTransformer.TranslateAppend(local_text_transform, xc, yc);
+
+                                    var fBottomContent = y0t + h2;
+                                    if(fBottomContent > fBottomLabels){
+                                        fBottomLabels = fBottomContent;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var stake_offset = AscFormat.isRealNumber(oCatAx.lblOffset) ? oCatAx.lblOffset/100 : 1;
+                            var labels_offset = oCatAx.labels.aLabels[0].tx.rich.content.Content[0].CompiledPr.Pr.TextPr.FontSize*(25.4/72)*stake_offset;
+                            for(i = 0; i < oAxisLabels.aLabels.length; ++i)
+                            {
+                                if(oAxisLabels.aLabels[i])
+                                {
+                                    oLabel = oAxisLabels.aLabels[i];
+                                    var wh = {w: oLabel.widthForTransform, h: oLabel.tx.rich.content.GetSummaryHeight()}, w2, h2, x1, y0, xc, yc;
+                                    w2 = wh.w*Math.cos(Math.PI/4) + wh.h*Math.sin(Math.PI/4);
+                                    h2 = wh.w*Math.sin(Math.PI/4) + wh.h*Math.cos(Math.PI/4);
+                                    x1 = oCatAx.xPoints[i].pos - wh.h*Math.sin(Math.PI/4);
+                                    y0 =  oAxisLabels.y +  oAxisLabels.extY - labels_offset;
+                                    var x1t, y0t;
+                                    var oRes = oProcessor3D.convertAndTurnPoint(x1*this.chartObj.calcProp.pxToMM, y0*this.chartObj.calcProp.pxToMM, dZPositionCatAxis);
+                                    x1t = oRes.x/this.chartObj.calcProp.pxToMM;
+                                    y0t = oRes.y/this.chartObj.calcProp.pxToMM;
+                                    xc = x1t + w2/2;
+                                    yc = y0t - h2/2;
+                                    local_text_transform = oLabel.localTransformText;
+                                    local_text_transform.Reset();
+                                    global_MatrixTransformer.TranslateAppend(local_text_transform, -wh.w/2, -wh.h/2);
+                                    global_MatrixTransformer.RotateRadAppend(local_text_transform, Math.PI/4);//TODO
+                                    global_MatrixTransformer.TranslateAppend(local_text_transform, xc, yc);
+                                }
+                            }
+                        }
+                    }
+
+                    oNewPos = oProcessor3D.convertAndTurnPoint(oAxisLabels.x*this.chartObj.calcProp.pxToMM, oAxisLabels.y*this.chartObj.calcProp.pxToMM, dZPositionCatAxis);
+                    aXPoints.push(oNewPos.x/this.chartObj.calcProp.pxToMM);
+                    aYPoints.push(oNewPos.y/this.chartObj.calcProp.pxToMM);
+                    oNewPos = oProcessor3D.convertAndTurnPoint((oAxisLabels.x + oAxisLabels.extX)*this.chartObj.calcProp.pxToMM, oAxisLabels.y*this.chartObj.calcProp.pxToMM, dZPositionCatAxis);
+                    aXPoints.push(oNewPos.x/this.chartObj.calcProp.pxToMM);
+                    aYPoints.push(oNewPos.y/this.chartObj.calcProp.pxToMM);
+                    oNewPos = oProcessor3D.convertAndTurnPoint((oAxisLabels.x + oAxisLabels.extX)*this.chartObj.calcProp.pxToMM, (oAxisLabels.y + oAxisLabels.extY)*this.chartObj.calcProp.pxToMM, dZPositionCatAxis);
+                    aXPoints.push(oNewPos.x/this.chartObj.calcProp.pxToMM);
+                    aYPoints.push(oNewPos.y/this.chartObj.calcProp.pxToMM);
+                    oNewPos = oProcessor3D.convertAndTurnPoint((oAxisLabels.x)*this.chartObj.calcProp.pxToMM, (oAxisLabels.y + oAxisLabels.extY)*this.chartObj.calcProp.pxToMM, dZPositionCatAxis);
+                    aXPoints.push(oNewPos.x/this.chartObj.calcProp.pxToMM);
+                    aYPoints.push(oNewPos.y/this.chartObj.calcProp.pxToMM);
+                    oAxisLabels.x = Math.min.apply(Math, aXPoints);
+                    oAxisLabels.y = Math.min.apply(Math, aYPoints);
+                    oAxisLabels.extX = Math.max.apply(Math, aXPoints) - oAxisLabels.x;
+                    oAxisLabels.extY = Math.max(Math.max.apply(Math, aYPoints), fBottomLabels) - oAxisLabels.y;
+                }
+                oAxisLabels = oValAx.labels;
+                if(oAxisLabels)
+                {
+                    var dZPositionCatAxis = oProcessor3D.calculateZPositionValAxis();
+
+                    var dPosX, dPosX2;
+                    if(!oAxisLabels.align)
+                    {
+                        dPosX2 = oAxisLabels.x;
+                        dPosX =  oAxisLabels.x*this.chartObj.calcProp.pxToMM;
+                    }
+                    else
+                    {
+                        dPosX2 = oAxisLabels.x + oAxisLabels.extX;
+                        dPosX = (oAxisLabels.x + oAxisLabels.extX)*this.chartObj.calcProp.pxToMM;
+                    }
+                    aXPoints.length = 0;
+                    aYPoints.length = 0;
+                    for(i = 0; i < oAxisLabels.aLabels.length; ++i)
+                    {
+                        oLabel = oAxisLabels.aLabels[i];
+                        if(oLabel)
+                        {
+                          INDX( 	 +0            (   à  è       Ö                    1I     h V     0I     ¦ÚKê›GÖÎÀÜòwÕ¦ÚKê›GÖ¦ÚKê›GÖ                      
+i n d e x . d . t s   3I     h R     0I     ¦ÚKê›GÖš\ÝòwÕ¦ÚKê›GÖ¦ÚKê›GÖ(      $              i n d e x . j s . T S 5I     h V     0I     ¦ÚKê›GÖ4âÞòwÕ¦ÚKê›GÖ¦ÚKê›GÖX       X               
+i n d e x . j s o n S 7I     h V     0I     ¦ÚKê›GÖÆgàòwÕ<Nê›GÖ¦ÚKê›GÖ       à              
+i n d e x . w x m l S :I     h V     0I     <Nê›G %°âòwÕ<Nê›GÖ<Nê›GÖ@       ;               
+i n d e x . w x s s S 1I     h X     0I     ¦ÚKê›GÖÎÀÜòwÕ¦ÚKê›GÖ¦ÚKê›GÖ                      I N D E X D ~ 1 . T S 5I     h X     0I     ¦ÚKê›GÖ4âÞòwÕ¦ÚKê›GÖ¦ÚKê›GÖX       X               I N D E X ~ 1 . J S O 7I     h X     0I     ¦ÚKê›GÖÆgàòwÕ<Nê›GÖ¦ÚKê›GÖ       à              I N D E X ~ 1 . W X M :I     h X     0I     <Nê›GÖ%°âòwÕ<Nê›GÖ<Nê›GÖ@       ;               I N D E X ~ 1 . W X S                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

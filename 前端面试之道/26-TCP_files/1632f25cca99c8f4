@@ -1,0 +1,472 @@
+g2());
+                                break;
+                            }
+                            case 1:
+                            {
+                                uni_color.color.setR(s.GetUChar());
+                                break;
+                            }
+                            case 2:
+                            {
+                                uni_color.color.setG(s.GetUChar());
+                                break;
+                            }
+                            case 3:
+                            {
+                                uni_color.color.setB(s.GetUChar());
+                                break;
+                            }
+                            default:
+                                break;
+                        }
+                    }
+
+                    if (s.cur < _e)
+                    {
+                        if (0 == s.GetUChar())
+                        {
+                            uni_color.setMods(this.ReadColorMods());
+                        }
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        if(!uni_color.color){
+            return null;
+        }
+
+        s.Seek2(read_end);
+        return uni_color;
+    }
+
+    this.ReadColorMods = function()
+    {
+        var ret = new AscFormat.CColorModifiers();
+        var _mods = this.ReadColorModifiers();
+        for(var i = 0; i < _mods.length; ++i)
+            ret.addMod(_mods[i]);
+        return ret;
+    };
+
+    this.ReadColorModifiers = function()
+    {
+        var s = this.stream;
+        var _start = s.cur;
+        var _end = _start + s.GetULong() + 4;
+
+        var _ret = null;
+
+        var _count = s.GetULong();
+        for (var i = 0; i < _count; i++)
+        {
+            if (s.cur > _end)
+                break;
+
+            s.Skip2(1);
+
+            var _s1 = s.cur;
+            var _e1 = _s1 + s.GetULong() + 4;
+
+            if (_s1 < _e1)
+            {
+                s.Skip2(1);
+
+                if (null == _ret)
+                    _ret = [];
+
+                var _mod = new AscFormat.CColorMod();
+                _ret[_ret.length] = _mod;
+
+                while (true)
+                {
+                    var _type = s.GetUChar();
+
+                    if (0 == _type)
+                    {
+                        _mod.setName(s.GetString2());
+                        var _find = _mod.name.indexOf(":");
+                        if (_find >= 0 && _find < (_mod.name.length - 1))
+                            _mod.setName(_mod.name.substring(_find + 1));
+                    }
+                    else if (1 == _type)
+                        _mod.setVal(s.GetLong());
+                    else if (g_nodeAttributeEnd == _type)
+                        break;
+                    else
+                        break;
+                }
+            }
+
+            s.Seek2(_e1);
+        }
+
+        s.Seek2(_end);
+        return _ret;
+    }
+
+    // ------------------------------------------
+
+    // UNIFILL ----------------------------------
+
+    this.ReadRect = function(bIsMain)
+    {
+        var _ret = {};
+
+        var s = this.stream;
+
+        var _rec_start = s.cur;
+        var _end_rec = _rec_start + s.GetLong() + 4;
+
+        s.Skip2(1); // start attributes
+
+        while (true)
+        {
+            var _at = s.GetUChar();
+            if (_at == g_nodeAttributeEnd)
+                break;
+
+            switch (_at)
+            {
+                case 0:
+                {
+                    _ret.l = s.GetPercentage();
+                    break;
+                }
+                case 1:
+                {
+                    _ret.t = s.GetPercentage();
+                    break;
+                }
+                case 2:
+                {
+                    _ret.r = s.GetPercentage();
+                    break;
+                }
+                case 3:
+                {
+                    _ret.b = s.GetPercentage();
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+
+        s.Seek2(_end_rec);
+
+        if (null == _ret.l && null == _ret.t && null == _ret.r && null == _ret.b)
+            return null;
+
+        if (_ret.l == null)
+            _ret.l = 0;
+        if (_ret.t == null)
+            _ret.t = 0;
+        if (_ret.r == null)
+            _ret.r = 0;
+        if (_ret.b == null)
+            _ret.b = 0;
+
+        if (!bIsMain)
+        {
+            var _absW = Math.abs(_ret.l) + Math.abs(_ret.r) + 100;
+            var _absH = Math.abs(_ret.t) + Math.abs(_ret.b) + 100;
+
+            _ret.l = -100 * _ret.l / _absW;
+            _ret.t = -100 * _ret.t / _absH;
+            _ret.r = -100 * _ret.r / _absW;
+            _ret.b = -100 * _ret.b / _absH;
+        }
+
+        _ret.r = 100 - _ret.r;
+        _ret.b = 100 - _ret.b;
+
+        if (_ret.l > _ret.r)
+        {
+            var tmp = _ret.l;
+            _ret.l = _ret.r;
+            _ret.r = tmp;
+        }
+        if (_ret.t > _ret.b)
+        {
+            var tmp = _ret.t;
+            _ret.t = _ret.b;
+            _ret.b = tmp;
+        }
+        var ret = new AscFormat.CSrcRect();
+        ret.setLTRB(_ret.l, _ret.t, _ret.r, _ret.b);
+        return ret;
+    }
+
+    this.ReadGradLin = function()
+    {
+        var _lin = new AscFormat.GradLin();
+        var s = this.stream;
+
+        var _rec_start = s.cur;
+        var _end_rec = _rec_start + s.GetLong() + 4;
+
+        s.Skip2(1); // start attributes
+
+        while (true)
+        {
+            var _at = s.GetUChar();
+            if (_at == g_nodeAttributeEnd)
+                break;
+
+            switch (_at)
+            {
+                case 0:
+                {
+                    _lin.setAngle(s.GetLong());
+                    break;
+                }
+                case 1:
+                {
+                    _lin.setScale(s.GetBool());
+                }
+                default:
+                    break;
+            }
+        }
+
+        s.Seek2(_end_rec);
+        return _lin;
+    }
+
+    this.ReadGradPath = function()
+    {
+        var _path = new AscFormat.GradPath();
+        var s = this.stream;
+
+        var _rec_start = s.cur;
+        var _end_rec = _rec_start + s.GetLong() + 4;
+
+        s.Skip2(1); // start attributes
+
+        while (true)
+        {
+            var _at = s.GetUChar();
+            if (_at == g_nodeAttributeEnd)
+                break;
+
+            switch (_at)
+            {
+                case 0:
+                {
+                    _path.setPath(s.GetUChar());
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+
+        s.Seek2(_end_rec);
+        return _path;
+    }
+
+    this.ReadUniFill = function(oSpPr, oImageShape, oLn)
+    {
+        var s = this.stream;
+        var read_start = s.cur;
+        var read_end = read_start + s.GetULong() + 4;
+
+        var uni_fill = new AscFormat.CUniFill();
+
+        if (s.cur < read_end)
+        {
+            var _type = s.GetUChar();
+            var _e = s.cur + s.GetULong() + 4;
+
+            switch (_type)
+            {
+                case c_oAscFill.FILL_TYPE_BLIP:
+                {
+                    s.Skip2(1);
+
+                    uni_fill.setFill(new AscFormat.CBlipFill());
+
+                    while (true)
+                    {
+                        var _at = s.GetUChar();
+                        if (_at == g_nodeAttributeEnd)
+                            break;
+
+                        switch (_at)
+                        {
+                            case 0:
+                                s.Skip2(4); // dpi
+                                break;
+                            case 1:
+                                s.Skip2(1); // rotWithShape
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    while (s.cur < _e)
+                    {
+                        var rec = s.GetUChar();
+
+                        switch (rec)
+                        {
+                            case 0:
+                            {
+                                var _s2 = s.cur;
+                                var _e2 = _s2 + s.GetLong() + 4;
+
+                                s.Skip2(1);
+
+                                while (true)
+                                {
+                                    var _at = s.GetUChar();
+                                    if (g_nodeAttributeEnd == _at)
+                                        break;
+
+                                    if (_at == 0)
+                                        s.Skip2(1);
+                                }
+
+                                while (s.cur < _e2)
+                                {
+                                    var _t = s.GetUChar();
+
+                                    switch (_t)
+                                    {
+                                        case 0:
+                                        case 1:
+                                        {
+                                            // id. embed / link
+                                            s.Skip2(4);
+                                            break;
+                                        }
+                                        case 10:
+                                        case 11:
+                                        {
+                                            // id. embed / link
+                                            s.GetString2();
+                                            break;
+                                        }
+                                        case 2:
+                                        {
+                                            s.Skip2(4);
+                                            var count_effects = s.GetLong();
+                                            for (var _eff = 0; _eff < count_effects; ++_eff)
+                                            {
+                                                s.Skip2(1); // type
+                                                var __rec_len = s.GetLong();
+                                                if (0 == __rec_len)
+                                                    continue;
+
+                                                var recE = s.GetUChar();
+
+                                                if (recE == 21)
+                                                {
+                                                    // alpha!!!
+                                                    var _e22 = s.cur + s.GetLong() + 4;
+
+                                                    s.Skip2(1); // startattr
+
+                                                    while (true)
+                                                    {
+                                                        var _at222 = s.GetUChar();
+                                                        if (g_nodeAttributeEnd == _at222)
+                                                            break;
+
+                                                        if (_at222 == 0)
+                                                        {
+                                                            uni_fill.setTransparent(255 * s.GetLong() / 100000);
+                                                        }
+                                                    }
+
+                                                    s.Seek2(_e22);
+                                                }
+                                                else
+                                                {
+                                                    s.SkipRecord();
+                                                }
+                                            }
+                                            break;
+                                        }
+                                        case 3:
+                                        {
+                                            s.Skip2(6); // len + start attributes + type
+
+                                            var sReadPath = s.GetString2();
+											if (this.IsUseFullUrl && this.insertDocumentUrlsData && this.insertDocumentUrlsData.imageMap) {
+												var sReadPathNew = this.insertDocumentUrlsData.imageMap[AscCommon.g_oDocumentUrls.mediaPrefix + sReadPath];
+												if(sReadPathNew){
+													sReadPath = sReadPathNew;
+												}
+											}
+                                            uni_fill.fill.setRasterImageId(sReadPath);
+
+                                            // TEST version ---------------
+                                            var _s = sReadPath;
+                                            var indS = _s.lastIndexOf("emf");
+                                            if (indS == -1)
+                                                indS = _s.lastIndexOf("wmf");
+
+                                            if (indS != -1 && (indS == (_s.length - 3)))
+                                            {
+                                                _s = _s.substring(0, indS);
+                                                _s += "svg";
+                                                sReadPath = _s;
+                                                uni_fill.fill.setRasterImageId(_s);
+                                            }
+                                            // ----------------------------
+
+                                            if (this.IsThemeLoader)
+                                            {
+                                                sReadPath = "theme" + (this.Api.ThemeLoader.CurrentLoadThemeIndex + 1) + "/media/" + sReadPath;
+                                                uni_fill.fill.setRasterImageId(sReadPath);
+                                            }
+
+                                            if (this.ImageMapChecker != null)
+                                                this.ImageMapChecker[sReadPath] = true;
+
+                                            if (this.IsUseFullUrl)
+                                                this.RebuildImages.push(new CBuilderImages(uni_fill.fill, sReadPath, oImageShape, oSpPr, oLn));
+
+                                            s.Skip2(1); // end attribute
+                                            break;
+                                        }
+                                        default:
+                                        {
+                                            s.SkipRecord();
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                s.Seek2(_e2);
+                                break;
+                            }
+                            case 1:
+                            {
+                                uni_fill.fill.setSrcRect(this.ReadRect(true));
+                                break;
+                            }
+                            case 2:
+                            {
+                                var oBlipTile = new AscFormat.CBlipFillTile();
+
+
+                                var s = this.stream;
+
+                                var _rec_start = s.cur;
+                                var _end_rec = _rec_start + s.GetLong() + 4;
+
+                                s.Skip2(1); // start attributes
+
+                                while (true)
+                                {
+                                    var _at = s.GetUChar();
+                                    if (_at == g_nodeAttributeEnd)
+                                break;
+
+                                    switch (_at)

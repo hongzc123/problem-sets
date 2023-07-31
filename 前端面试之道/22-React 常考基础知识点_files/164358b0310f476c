@@ -1,0 +1,226 @@
+toryitem_type_SlideMaster | 3;
+	window['AscDFH'].historyitem_SlideMasterSetTxStyles       = window['AscDFH'].historyitem_type_SlideMaster | 4;
+	window['AscDFH'].historyitem_SlideMasterSetCSldName       = window['AscDFH'].historyitem_type_SlideMaster | 5;
+	window['AscDFH'].historyitem_SlideMasterSetClrMapOverride = window['AscDFH'].historyitem_type_SlideMaster | 6;
+	window['AscDFH'].historyitem_SlideMasterAddLayout         = window['AscDFH'].historyitem_type_SlideMaster | 7;
+	window['AscDFH'].historyitem_SlideMasterSetThemeIndex     = window['AscDFH'].historyitem_type_SlideMaster | 8;
+	window['AscDFH'].historyitem_SlideMasterSetSize           = window['AscDFH'].historyitem_type_SlideMaster | 9;
+
+	window['AscDFH'].historyitem_SlideCommentsAddComment    = window['AscDFH'].historyitem_type_SlideComments | 1;
+	window['AscDFH'].historyitem_SlideCommentsRemoveComment = window['AscDFH'].historyitem_type_SlideComments | 2;
+
+	window['AscDFH'].historyitem_PropLockerSetId = window['AscDFH'].historyitem_type_PropLocker | 1;
+
+	window['AscDFH'].historyitem_ThemeSetColorScheme     = window['AscDFH'].historyitem_type_Theme | 1;
+	window['AscDFH'].historyitem_ThemeSetFontScheme      = window['AscDFH'].historyitem_type_Theme | 2;
+	window['AscDFH'].historyitem_ThemeSetFmtScheme       = window['AscDFH'].historyitem_type_Theme | 3;
+	window['AscDFH'].historyitem_ThemeSetName            = window['AscDFH'].historyitem_type_Theme | 4;
+	window['AscDFH'].historyitem_ThemeSetIsThemeOverride = window['AscDFH'].historyitem_type_Theme | 5;
+	window['AscDFH'].historyitem_ThemeSetSpDef           = window['AscDFH'].historyitem_type_Theme | 6;
+	window['AscDFH'].historyitem_ThemeSetLnDef           = window['AscDFH'].historyitem_type_Theme | 7;
+	window['AscDFH'].historyitem_ThemeSetTxDef           = window['AscDFH'].historyitem_type_Theme | 8;
+	window['AscDFH'].historyitem_ThemeAddExtraClrScheme  = window['AscDFH'].historyitem_type_Theme | 9;
+
+	window['AscDFH'].historyitem_GraphicFrameSetSpPr          = window['AscDFH'].historyitem_type_GraphicFrame | 1;
+	window['AscDFH'].historyitem_GraphicFrameSetGraphicObject = window['AscDFH'].historyitem_type_GraphicFrame | 2;
+	window['AscDFH'].historyitem_GraphicFrameSetSetNvSpPr     = window['AscDFH'].historyitem_type_GraphicFrame | 3;
+	window['AscDFH'].historyitem_GraphicFrameSetSetParent     = window['AscDFH'].historyitem_type_GraphicFrame | 4;
+	window['AscDFH'].historyitem_GraphicFrameSetSetGroup      = window['AscDFH'].historyitem_type_GraphicFrame | 5;
+
+
+    window['AscDFH'].historyitem_Sparkline_Type = window['AscDFH'].historyitem_type_Sparkline | 1;
+    window['AscDFH'].historyitem_Sparkline_LineWeight = window['AscDFH'].historyitem_type_Sparkline | 2;
+    window['AscDFH'].historyitem_Sparkline_DisplayEmptyCellsAs = window['AscDFH'].historyitem_type_Sparkline | 3;
+    window['AscDFH'].historyitem_Sparkline_Markers = window['AscDFH'].historyitem_type_Sparkline | 4;
+    window['AscDFH'].historyitem_Sparkline_High = window['AscDFH'].historyitem_type_Sparkline | 5;
+    window['AscDFH'].historyitem_Sparkline_Low = window['AscDFH'].historyitem_type_Sparkline | 6;
+    window['AscDFH'].historyitem_Sparkline_First = window['AscDFH'].historyitem_type_Sparkline | 7;
+    window['AscDFH'].historyitem_Sparkline_Last = window['AscDFH'].historyitem_type_Sparkline | 8;
+    window['AscDFH'].historyitem_Sparkline_Negative = window['AscDFH'].historyitem_type_Sparkline | 9;
+    window['AscDFH'].historyitem_Sparkline_DisplayXAxis = window['AscDFH'].historyitem_type_Sparkline | 10;
+    window['AscDFH'].historyitem_Sparkline_DisplayHidden = window['AscDFH'].historyitem_type_Sparkline | 11;
+    window['AscDFH'].historyitem_Sparkline_MinAxisType = window['AscDFH'].historyitem_type_Sparkline | 12;
+    window['AscDFH'].historyitem_Sparkline_MaxAxisType = window['AscDFH'].historyitem_type_Sparkline | 13;
+    window['AscDFH'].historyitem_Sparkline_RightToLeft = window['AscDFH'].historyitem_type_Sparkline | 14;
+    window['AscDFH'].historyitem_Sparkline_ManualMax = window['AscDFH'].historyitem_type_Sparkline | 15;
+    window['AscDFH'].historyitem_Sparkline_ManualMin = window['AscDFH'].historyitem_type_Sparkline | 16;
+    window['AscDFH'].historyitem_Sparkline_DateAxis = window['AscDFH'].historyitem_type_Sparkline | 17;
+    window['AscDFH'].historyitem_Sparkline_ColorSeries = window['AscDFH'].historyitem_type_Sparkline | 18;
+    window['AscDFH'].historyitem_Sparkline_ColorNegative = window['AscDFH'].historyitem_type_Sparkline | 19;
+    window['AscDFH'].historyitem_Sparkline_ColorAxis = window['AscDFH'].historyitem_type_Sparkline | 20;
+    window['AscDFH'].historyitem_Sparkline_ColorMarkers = window['AscDFH'].historyitem_type_Sparkline | 21;
+    window['AscDFH'].historyitem_Sparkline_ColorFirst = window['AscDFH'].historyitem_type_Sparkline | 22;
+    window['AscDFH'].historyitem_Sparkline_colorLast = window['AscDFH'].historyitem_type_Sparkline | 23;
+    window['AscDFH'].historyitem_Sparkline_ColorHigh = window['AscDFH'].historyitem_type_Sparkline | 24;
+    window['AscDFH'].historyitem_Sparkline_ColorLow = window['AscDFH'].historyitem_type_Sparkline | 25;
+    window['AscDFH'].historyitem_Sparkline_F = window['AscDFH'].historyitem_type_Sparkline | 26;
+    window['AscDFH'].historyitem_Sparkline_ChangeData = window['AscDFH'].historyitem_type_Sparkline | 27;
+    window['AscDFH'].historyitem_Sparkline_RemoveData = window['AscDFH'].historyitem_type_Sparkline | 28;
+    window['AscDFH'].historyitem_Sparkline_RemoveSparkline = window['AscDFH'].historyitem_type_Sparkline | 29;
+
+	window['AscDFH'].historyitem_PivotTableDefinitionDelete = window['AscDFH'].historyitem_type_PivotTableDefinition | 1;
+
+
+    window['AscDFH'].historyitem_NotesMasterSetHF          = window['AscDFH'].historyitem_type_NotesMaster | 1;
+    window['AscDFH'].historyitem_NotesMasterSetNotesStyle  = window['AscDFH'].historyitem_type_NotesMaster | 2;
+    window['AscDFH'].historyitem_NotesMasterSetNotesTheme  = window['AscDFH'].historyitem_type_NotesMaster | 3;
+    window['AscDFH'].historyitem_NotesMasterAddToSpTree    = window['AscDFH'].historyitem_type_NotesMaster | 4;
+    window['AscDFH'].historyitem_NotesMasterRemoveFromTree = window['AscDFH'].historyitem_type_NotesMaster | 5;
+    window['AscDFH'].historyitem_NotesMasterSetBg          = window['AscDFH'].historyitem_type_NotesMaster | 6;
+    window['AscDFH'].historyitem_NotesMasterAddToNotesLst  = window['AscDFH'].historyitem_type_NotesMaster | 7;
+    window['AscDFH'].historyitem_NotesMasterSetName        = window['AscDFH'].historyitem_type_NotesMaster | 8;
+
+
+    window['AscDFH'].historyitem_NotesSetClrMap           = window['AscDFH'].historyitem_type_Notes | 1;
+    window['AscDFH'].historyitem_NotesSetShowMasterPhAnim = window['AscDFH'].historyitem_type_Notes | 2;
+    window['AscDFH'].historyitem_NotesSetShowMasterSp     = window['AscDFH'].historyitem_type_Notes | 3;
+    window['AscDFH'].historyitem_NotesAddToSpTree         = window['AscDFH'].historyitem_type_Notes | 4;
+    window['AscDFH'].historyitem_NotesRemoveFromTree      = window['AscDFH'].historyitem_type_Notes | 5;
+    window['AscDFH'].historyitem_NotesSetBg               = window['AscDFH'].historyitem_type_Notes | 6;
+    window['AscDFH'].historyitem_NotesSetName             = window['AscDFH'].historyitem_type_Notes | 7;
+    window['AscDFH'].historyitem_NotesSetSlide            = window['AscDFH'].historyitem_type_Notes | 8;
+    window['AscDFH'].historyitem_NotesSetNotesMaster      = window['AscDFH'].historyitem_type_Notes | 9;
+
+    window['AscDFH'].historyitem_PresentationSectionSetName       = window['AscDFH'].historyitem_type_PresentationSection | 1;
+    window['AscDFH'].historyitem_PresentationSectionSetGuid       = window['AscDFH'].historyitem_type_PresentationSection | 2;
+    window['AscDFH'].historyitem_PresentationSectionSetStartIndex = window['AscDFH'].historyitem_type_PresentationSection | 3;
+
+
+	//------------------------------------------------------------------------------------------------------------------
+	// Типы изменений класса CDocumentMacros
+	//------------------------------------------------------------------------------------------------------------------
+	window['AscDFH'].historyitem_DocumentMacros_Data = window['Asc'].historyitem_type_DocumentMacros | 1;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//
+	// Типы действий, который может совершить пользователь
+	//
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	window['AscDFH'].historydescription_Cut                                         = 0x0001;
+	window['AscDFH'].historydescription_PasteButtonIE                               = 0x0002;
+	window['AscDFH'].historydescription_PasteButtonNotIE                            = 0x0003;
+	window['AscDFH'].historydescription_ChartDrawingObjects                         = 0x0004;
+	window['AscDFH'].historydescription_CommonControllerCheckChartText              = 0x0005;
+	window['AscDFH'].historydescription_CommonControllerUnGroup                     = 0x0006;
+	window['AscDFH'].historydescription_CommonControllerCheckSelected               = 0x0007;
+	window['AscDFH'].historydescription_CommonControllerSetGraphicObject            = 0x0008;
+	window['AscDFH'].historydescription_CommonStatesAddNewShape                     = 0x0009;
+	window['AscDFH'].historydescription_CommonStatesRotate                          = 0x000a;
+	window['AscDFH'].historydescription_PasteNative                                 = 0x000b;
+	window['AscDFH'].historydescription_Document_GroupUnGroup                       = 0x000c;
+	window['AscDFH'].historydescription_Document_SetDefaultLanguage                 = 0x000d;
+	window['AscDFH'].historydescription_Document_ChangeColorScheme                  = 0x000e;
+	window['AscDFH'].historydescription_Document_AddChart                           = 0x000f;
+	window['AscDFH'].historydescription_Document_EditChart                          = 0x0010;
+	window['AscDFH'].historydescription_Document_DragText                           = 0x0011;
+	window['AscDFH'].historydescription_Document_DocumentContentExtendToPos         = 0x0012;
+	window['AscDFH'].historydescription_Document_AddHeader                          = 0x0013;
+	window['AscDFH'].historydescription_Document_AddFooter                          = 0x0014;
+	window['AscDFH'].historydescription_Document_ParagraphExtendToPos               = 0x0015;
+	window['AscDFH'].historydescription_Document_ParagraphChangeFrame               = 0x0016;
+	window['AscDFH'].historydescription_Document_ReplaceAll                         = 0x0017;
+	window['AscDFH'].historydescription_Document_ReplaceSingle                      = 0x0018;
+	window['AscDFH'].historydescription_Document_TableAddNewRowByTab                = 0x0019;
+	window['AscDFH'].historydescription_Document_AddNewShape                        = 0x001a;
+	window['AscDFH'].historydescription_Document_EditWrapPolygon                    = 0x001b;
+	window['AscDFH'].historydescription_Document_MoveInlineObject                   = 0x001c;
+	window['AscDFH'].historydescription_Document_CopyAndMoveInlineObject            = 0x001d;
+	window['AscDFH'].historydescription_Document_RotateInlineDrawing                = 0x001e;
+	window['AscDFH'].historydescription_Document_RotateFlowDrawingCtrl              = 0x001f;
+	window['AscDFH'].historydescription_Document_RotateFlowDrawingNoCtrl            = 0x0020;
+	window['AscDFH'].historydescription_Document_MoveInGroup                        = 0x0021;
+	window['AscDFH'].historydescription_Document_ChangeWrapContour                  = 0x0022;
+	window['AscDFH'].historydescription_Document_ChangeWrapContourAddPoint          = 0x0023;
+	window['AscDFH'].historydescription_Document_GrObjectsBringToFront              = 0x0024;
+	window['AscDFH'].historydescription_Document_GrObjectsBringForwardGroup         = 0x0025;
+	window['AscDFH'].historydescription_Document_GrObjectsBringForward              = 0x0026;
+	window['AscDFH'].historydescription_Document_GrObjectsSendToBackGroup           = 0x0027;
+	window['AscDFH'].historydescription_Document_GrObjectsSendToBack                = 0x0028;
+	window['AscDFH'].historydescription_Document_GrObjectsBringBackwardGroup        = 0x0029;
+	window['AscDFH'].historydescription_Document_GrObjectsBringBackward             = 0x002a;
+	window['AscDFH'].historydescription_Document_GrObjectsChangeWrapPolygon         = 0x002b;
+	window['AscDFH'].historydescription_Document_MathAutoCorrect                    = 0x002c;
+	window['AscDFH'].historydescription_Document_SetFramePrWithFontFamily           = 0x002d;
+	window['AscDFH'].historydescription_Document_SetFramePr                         = 0x002e;
+	window['AscDFH'].historydescription_Document_SetFramePrWithFontFamilyLong       = 0x002f;
+	window['AscDFH'].historydescription_Document_SetTextFontName                    = 0x0030;
+	window['AscDFH'].historydescription_Document_SetTextFontSize                    = 0x0031;
+	window['AscDFH'].historydescription_Document_SetTextBold                        = 0x0032;
+	window['AscDFH'].historydescription_Document_SetTextItalic                      = 0x0033;
+	window['AscDFH'].historydescription_Document_SetTextUnderline                   = 0x0034;
+	window['AscDFH'].historydescription_Document_SetTextStrikeout                   = 0x0035;
+	window['AscDFH'].historydescription_Document_SetTextDStrikeout                  = 0x0036;
+	window['AscDFH'].historydescription_Document_SetTextSpacing                     = 0x0037;
+	window['AscDFH'].historydescription_Document_SetTextCaps                        = 0x0038;
+	window['AscDFH'].historydescription_Document_SetTextSmallCaps                   = 0x0039;
+	window['AscDFH'].historydescription_Document_SetTextPosition                    = 0x003a;
+	window['AscDFH'].historydescription_Document_SetTextLang                        = 0x003b;
+	window['AscDFH'].historydescription_Document_SetParagraphLineSpacing            = 0x003c;
+	window['AscDFH'].historydescription_Document_SetParagraphLineSpacingBeforeAfter = 0x003d;
+	window['AscDFH'].historydescription_Document_IncFontSize                        = 0x003e;
+	window['AscDFH'].historydescription_Document_DecFontSize                        = 0x003f;
+	window['AscDFH'].historydescription_Document_SetParagraphBorders                = 0x0040;
+	window['AscDFH'].historydescription_Document_SetParagraphPr                     = 0x0041;
+	window['AscDFH'].historydescription_Document_SetParagraphAlign                  = 0x0042;
+	window['AscDFH'].historydescription_Document_SetTextVertAlign                   = 0x0043;
+	window['AscDFH'].historydescription_Document_SetParagraphNumbering              = 0x0044;
+	window['AscDFH'].historydescription_Document_SetParagraphStyle                  = 0x0045;
+	window['AscDFH'].historydescription_Document_SetParagraphPageBreakBefore        = 0x0046;
+	window['AscDFH'].historydescription_Document_SetParagraphWidowControl           = 0x0047;
+	window['AscDFH'].historydescription_Document_SetParagraphKeepLines              = 0x0048;
+	window['AscDFH'].historydescription_Document_SetParagraphKeepNext               = 0x0049;
+	window['AscDFH'].historydescription_Document_SetParagraphContextualSpacing      = 0x004a;
+	window['AscDFH'].historydescription_Document_SetTextHighlightNone               = 0x004b;
+	window['AscDFH'].historydescription_Document_SetTextHighlightColor              = 0x004c;
+	window['AscDFH'].historydescription_Document_SetTextColor                       = 0x004d;
+	window['AscDFH'].historydescription_Document_SetParagraphShd                    = 0x004e;
+	window['AscDFH'].historydescription_Document_SetParagraphIndent                 = 0x004f;
+	window['AscDFH'].historydescription_Document_IncParagraphIndent                 = 0x0050;
+	window['AscDFH'].historydescription_Document_DecParagraphIndent                 = 0x0051;
+	window['AscDFH'].historydescription_Document_SetParagraphIndentRight            = 0x0052;
+	window['AscDFH'].historydescription_Document_SetParagraphIndentFirstLine        = 0x0053;
+	window['AscDFH'].historydescription_Document_SetPageOrientation                 = 0x0054;
+	window['AscDFH'].historydescription_Document_SetPageSize                        = 0x0055;
+	window['AscDFH'].historydescription_Document_AddPageBreak                       = 0x0056;
+	window['AscDFH'].historydescription_Document_AddPageNumToHdrFtr                 = 0x0057;
+	window['AscDFH'].historydescription_Document_AddPageNumToCurrentPos             = 0x0058;
+	window['AscDFH'].historydescription_Document_SetHdrFtrDistance                  = 0x0059;
+	window['AscDFH'].historydescription_Document_SetHdrFtrFirstPage                 = 0x005a;
+	window['AscDFH'].historydescription_Document_SetHdrFtrEvenAndOdd                = 0x005b;
+	window['AscDFH'].historydescription_Document_SetHdrFtrLink                      = 0x005c;
+	window['AscDFH'].historydescription_Document_AddTable                           = 0x005d;
+	window['AscDFH'].historydescription_Document_TableAddRowAbove                   = 0x005e;
+	window['AscDFH'].historydescription_Document_TableAddRowBelow                   = 0x005f;
+	window['AscDFH'].historydescription_Document_TableAddColumnLeft                 = 0x0060;
+	window['AscDFH'].historydescription_Document_TableAddColumnRight                = 0x0061;
+	window['AscDFH'].historydescription_Document_TableRemoveRow                     = 0x0062;
+	window['AscDFH'].historydescription_Document_TableRemoveColumn                  = 0x0063;
+	window['AscDFH'].historydescription_Document_RemoveTable                        = 0x0064;
+	window['AscDFH'].historydescription_Document_MergeTableCells                    = 0x0065;
+	window['AscDFH'].historydescription_Document_SplitTableCells                    = 0x0066;
+	window['AscDFH'].historydescription_Document_ApplyTablePr                       = 0x0067;
+	window['AscDFH'].historydescription_Document_AddImageUrl                        = 0x0068;
+	window['AscDFH'].historydescription_Document_AddImageUrlLong                    = 0x0069;
+	window['AscDFH'].historydescription_Document_AddImageToPage                     = 0x006a;
+	window['AscDFH'].historydescription_Document_ApplyImagePrWithUrl                = 0x006b;
+	window['AscDFH'].historydescription_Document_ApplyImagePrWithUrlLong            = 0x006c;
+	window['AscDFH'].historydescription_Document_ApplyImagePrWithFillUrl            = 0x006d;
+	window['AscDFH'].historydescription_Document_ApplyImagePrWithFillUrlLong        = 0x006e;
+	window['AscDFH'].historydescription_Document_ApplyImagePr                       = 0x006f;
+	window['AscDFH'].historydescription_Document_AddHyperlink                       = 0x0070;
+	window['AscDFH'].historydescription_Document_ChangeHyperlink                    = 0x0071;
+	window['AscDFH'].historydescription_Document_RemoveHyperlink                    = 0x0072;
+	window['AscDFH'].historydescription_Document_ReplaceMisspelledWord              = 0x0073;
+	window['AscDFH'].historydescription_Document_AddComment                         = 0x0074;
+	window['AscDFH'].historydescription_Document_RemoveComment                      = 0x0075;
+	window['AscDFH'].historydescription_Document_ChangeComment                      = 0x0076;
+	window['AscDFH'].historydescription_Document_SetTextFontNameLong                = 0x0077;
+	window['AscDFH'].historydescription_Document_AddImage                           = 0x0078;
+	window['AscDFH'].historydescription_Document_ClearFormatting                    = 0x0079;
+	window['AscDFH'].historydescription_Document_AddSectionBreak                    = 0x007a;
+	window['AscDFH'].historydescription_Document_AddMath                            = 0x007b;
+	window['AscDFH'].historydescription_Document_SetParagraphTabs                   = 0x007c;
+	window['AscDFH'].historydescription_Document_SetParagraphIndentFromRulers       = 0x007d;
+	@import '../common/index.wxss';.van-col{float:left;box-sizing:border-box}.van-col--1{width:4.16666667%}.van-col--offset-1{margin-left:4.16666667%}.van-col--2{width:8.33333333%}.van-col--offset-2{margin-left:8.33333333%}.van-col--3{width:12.5%}.van-col--offset-3{margin-left:12.5%}.van-col--4{width:16.66666667%}.van-col--offset-4{margin-left:16.66666667%}.van-col--5{width:20.83333333%}.van-col--offset-5{margin-left:20.83333333%}.van-col--6{width:25%}.van-col--offset-6{margin-left:25%}.van-col--7{width:29.16666667%}.van-col--offset-7{margin-left:29.16666667%}.van-col--8{width:33.33333333%}.van-col--offse

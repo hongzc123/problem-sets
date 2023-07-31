@@ -1,0 +1,827 @@
+ds.length = 0;
+        //}
+        compiled_grid_lines.Fill.merge(defaultStyle);
+
+        if(subtleLine && subtleLine.Fill && subtleLine.Fill.fill && subtleLine.Fill.fill.color && subtleLine.Fill.fill.color.Mods
+            && compiled_grid_lines.Fill && compiled_grid_lines.Fill.fill && compiled_grid_lines.Fill.fill.color)
+        {
+            compiled_grid_lines.Fill.fill.color.Mods =  subtleLine.Fill.fill.color.Mods.createDuplicate();
+        }
+        compiled_grid_lines.merge(spPr.ln);
+        compiled_grid_lines.calculate(parents.theme, parents.slide, parents.layout, parents.master, {R: 0, G: 0, B: 0, A: 255}, this.clrMapOvr);
+        checkBlackUnifill(compiled_grid_lines.Fill, true);
+        return compiled_grid_lines;
+    }
+    return null;
+};
+
+CChartSpace.prototype.calcMajorMinorGridLines = function (axis, defaultStyle, subtleLine, parents)
+{
+    if(!axis)
+        return;
+    axis.compiledMajorGridLines = this.calcGridLine(defaultStyle.axisAndMajorGridLines, axis.majorGridlines, subtleLine, parents);
+    axis.compiledMinorGridLines = this.calcGridLine(defaultStyle.minorGridlines, axis.minorGridlines, subtleLine, parents);
+};
+
+CChartSpace.prototype.handleTitlesAfterChangeTheme = function()
+{
+    if(this.chart && this.chart.title)
+    {
+        this.chart.title.checkAfterChangeTheme();
+    }
+    if(this.chart && this.chart.plotArea)
+    {
+        var hor_axis = this.chart.plotArea.getHorizontalAxis();
+        if(hor_axis && hor_axis.title)
+        {
+            hor_axis.title.checkAfterChangeTheme();
+        }
+        var vert_axis = this.chart.plotArea.getVerticalAxis();
+        if(vert_axis && vert_axis.title)
+        {
+            vert_axis.title.checkAfterChangeTheme();
+        }
+    }
+};
+
+CChartSpace.prototype.recalculateGridLines = function()
+{
+    if(this.chart && this.chart.plotArea)
+    {
+        var default_style = CHART_STYLE_MANAGER.getDefaultLineStyleByIndex(this.style);
+        var parent_objects = this.getParentObjects();
+        var subtle_line;
+        if(parent_objects.theme  && parent_objects.theme.themeElements
+            && parent_objects.theme.themeElements.fmtScheme
+            && parent_objects.theme.themeElements.fmtScheme.lnStyleLst)
+        {
+            subtle_line = parent_objects.theme.themeElements.fmtScheme.lnStyleLst[0];
+        }
+        var aAxes = this.chart.plotArea.axId;
+        for(var i = 0; i < aAxes.length; ++i){
+            var oCurAxis = aAxes[i];
+            this.calcMajorMinorGridLines(oCurAxis, default_style, subtle_line, parent_objects);
+            this.calcMajorMinorGridLines(oCurAxis, default_style, subtle_line, parent_objects);
+        }
+    }
+};
+
+CChartSpace.prototype.hitToAdjustment = function()
+{
+    return {hit: false};
+};
+
+CChartSpace.prototype.recalculateAxisLabels = function()
+{
+    if(this.chart && this.chart.title)
+    {
+        var title = this.chart.title;
+        //title.parent = this.chart;
+        title.chart = this;
+        title.recalculate();
+    }
+    if(this.chart && this.chart.plotArea)
+    {
+        var aAxis = this.chart.plotArea.axId;
+        for(var i = 0; i < aAxis.length; ++i){
+            var title = aAxis[i].title;
+            if(title){
+                title.chart = this;
+                title.recalculate();
+            }
+        }
+    }
+};
+
+
+CChartSpace.prototype.updateLinks = function()
+{
+    //Этот метод нужен, т. к. мы не полностью поддерживаем формат в котором в одном plotArea может быть несколько разных диаграмм(конкретных типов).
+    // Здесь мы берем первую из диаграмм лежащих в массиве plotArea.charts, а также выставляем ссылки для осей ;
+    if(this.chart && this.chart.plotArea)
+    {
+        var oCheckChart;
+        var oPlotArea = this.chart.plotArea;
+        var aCharts = oPlotArea.charts;
+
+        this.chart.plotArea.chart = aCharts[0];
+        for(var i = 0; i < aCharts.length; ++i){
+            if(aCharts[i].getObjectType() !== AscDFH.historyitem_type_PieChart && aCharts[i].getObjectType() !== AscDFH.historyitem_type_DoughnutChart){
+                oCheckChart = aCharts[i];
+                break;
+            }
+        }
+
+        if(oCheckChart){
+
+            this.chart.plotArea.chart = oCheckChart;
+            this.chart.plotArea.serAx = null;
+            if(oCheckChart.getAxisByTypes)
+            {
+                var axis_by_types = oCheckChart.getAxisByTypes();
+                if(axis_by_types.valAx.length > 0 && axis_by_types.catAx.length > 0)
+                {
+                    for(var i = 0; i < axis_by_types.valAx.length; ++i)
+                    {
+                        if(axis_by_types.valAx[i].crossAx)
+                        {
+                            for(var j = 0; j < axis_by_types.catAx.length; ++j)
+                            {
+                                if(axis_by_types.catAx[j] === axis_by_types.valAx[i].crossAx)
+                                {
+                                    this.chart.plotArea.valAx = axis_by_types.valAx[i];
+                                    this.chart.plotArea.catAx = axis_by_types.catAx[j];
+                                    break;
+                                }
+                            }
+                            if(j < axis_by_types.catAx.length)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    if(i ===  axis_by_types.valAx.length)
+                    {
+                        this.chart.plotArea.valAx = axis_by_types.valAx[0];
+                        this.chart.plotArea.catAx = axis_by_types.catAx[0];
+                    }
+                    if(this.chart.plotArea.valAx && this.chart.plotArea.catAx)
+                    {
+                        for(i = 0; i < axis_by_types.serAx.length; ++i)
+                        {
+                            if(axis_by_types.serAx[i].crossAx === this.chart.plotArea.valAx)
+                            {
+                                this.chart.plotArea.serAx = axis_by_types.serAx[i];
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if(axis_by_types.valAx.length > 1)
+                    {//TODO: выставлять оси исходя из настроек
+                        this.chart.plotArea.valAx = axis_by_types.valAx[1];
+                        this.chart.plotArea.catAx = axis_by_types.valAx[0];
+                    }
+                }
+            }
+            else
+            {
+                this.chart.plotArea.valAx = null;
+                this.chart.plotArea.catAx = null;
+            }
+        }
+    }
+};
+
+CChartSpace.prototype.draw = function(graphics)
+{
+    if(this.checkNeedRecalculate && this.checkNeedRecalculate()){
+        return;
+    }
+    if(graphics.IsSlideBoundsCheckerType)
+    {
+        graphics.transform3(this.transform);
+        graphics._s();
+        graphics._m(0, 0);
+        graphics._l(this.extX, 0);
+        graphics._l(this.extX, this.extY);
+        graphics._l(0, this.extY);
+        graphics._e();
+        return;
+    }
+    if(graphics.updatedRect)
+    {
+        var rect = graphics.updatedRect;
+        var bounds = this.bounds;
+        if(bounds.x > rect.x + rect.w
+            || bounds.y > rect.y + rect.h
+            || bounds.x + bounds.w < rect.x
+            || bounds.y + bounds.h < rect.y)
+            return;
+    }
+    graphics.SaveGrState();
+    graphics.SetIntegerGrid(false);
+    graphics.transform3(this.transform, false);
+
+    var ln_width;
+    if(this.pen && AscFormat.isRealNumber(this.pen.w))
+    {
+        ln_width = this.pen.w/36000;
+    }
+    else
+    {
+        ln_width = 0;
+    }
+    graphics.AddClipRect(-ln_width, -ln_width, this.extX+2*ln_width, this.extY+2*ln_width);
+
+    if(this.chartObj)
+    {
+        this.chartObj.draw(this, graphics);
+    }
+    if(this.chart && !this.bEmptySeries)
+    {
+        if(this.chart.plotArea)
+        {
+            // var oChartSize = this.getChartSizes();
+            // graphics.p_width(70);
+            // graphics.p_color(0, 0, 0, 255);
+            // graphics._s();
+            // graphics._m(oChartSize.startX, oChartSize.startY);
+            // graphics._l(oChartSize.startX + oChartSize.w, oChartSize.startY + 0);
+            // graphics._l(oChartSize.startX + oChartSize.w, oChartSize.startY + oChartSize.h);
+            // graphics._l(oChartSize.startX + 0, oChartSize.startY + oChartSize.h);
+            // graphics._z();
+            // graphics.ds();
+            var aCharts = this.chart.plotArea.charts;
+            for(var t = 0; t < aCharts.length; ++t){
+                var oChart = aCharts[t];
+                if(oChart && oChart.series)
+                {
+                    var series = oChart.series;
+                    var _len = oChart.getObjectType() === AscDFH.historyitem_type_PieChart ? 1 : series.length;
+                    for(var i = 0; i < _len; ++i)
+                    {
+                        var ser = series[i];
+                        var pts = AscFormat.getPtsFromSeries(ser);
+                        for(var j = 0; j < pts.length; ++j)
+                        {
+                            if(pts[j].compiledDlb)
+                                pts[j].compiledDlb.draw(graphics);
+                        }
+                    }
+                }
+            }
+            for(var  i = 0; i < this.chart.plotArea.axId.length; ++i){
+                var oAxis = this.chart.plotArea.axId[i];
+                if(oAxis.title){
+                    oAxis.title.draw(graphics);
+                }
+                if(oAxis.labels){
+                    oAxis.labels.draw(graphics);
+                }
+            }
+        }
+        if(this.chart.title)
+        {
+            this.chart.title.draw(graphics);
+        }
+        if(this.chart.legend)
+        {
+            this.chart.legend.draw(graphics);
+        }
+    }
+    graphics.RestoreGrState();
+    if(this.drawLocks(this.transform, graphics)){
+        graphics.RestoreGrState();
+    }
+};
+
+CChartSpace.prototype.addToSetPosition = function(dLbl)
+{
+    if(dLbl instanceof AscFormat.CDLbl)
+        this.recalcInfo.dataLbls.push(dLbl);
+    else if(dLbl instanceof AscFormat.CTitle)
+        this.recalcInfo.axisLabels.push(dLbl);
+};
+
+CChartSpace.prototype.recalculateChart = function()
+{
+    this.pathMemory.curPos = -1;
+    if(this.chartObj == null)
+        this.chartObj =  new AscFormat.CChartsDrawer();
+    this.chartObj.recalculate(this);
+};
+
+
+
+CChartSpace.prototype.GetRevisionsChangeParagraph = function(SearchEngine){
+    var titles = this.getAllTitles(), i;
+    if(titles.length === 0){
+        return;
+    }
+    var oSelectedTitle = this.selection.title || this.selection.textSelection;
+    if(oSelectedTitle){
+        for(i = 0; i < titles.length; ++i){
+            if(oSelectedTitle === titles[i]){
+                break;
+            }
+        }
+        if(i === titles.length){
+            return;
+        }
+    }
+    else{
+        if(SearchEngine.Get_Direction() > 0){
+            i = 0;
+        }
+        else{
+            i = titles.length - 1;
+        }
+    }
+    while(!SearchEngine.Is_Found()){
+        titles[i].GetRevisionsChangeParagraph(SearchEngine);
+        if(SearchEngine.Get_Direction() > 0){
+            if(i === titles.length - 1){
+                break;
+            }
+            ++i;
+        }
+        else{
+            if(i === 0){
+                break;
+            }
+            --i;
+        }
+    }
+};
+
+CChartSpace.prototype.Search  = function(Str, Props, SearchEngine, Type)
+{
+    var titles = this.getAllTitles();
+    for(var i = 0; i < titles.length; ++i)
+    {
+        titles[i].Search(Str, Props, SearchEngine, Type)
+    }
+};
+
+CChartSpace.prototype.Search_GetId  = function(bNext, bCurrent)
+{
+    var Current = -1;
+    var titles = this.getAllTitles();
+    var Len = titles.length;
+
+    var Id = null;
+    if ( true === bCurrent )
+    {
+        for(var i = 0; i < Len; ++i)
+        {
+            if(titles[i] === this.selection.textSelection)
+            {
+                Current = i;
+                break;
+            }
+        }
+    }
+
+    if ( true === bNext )
+    {
+        var Start = ( -1 !== Current ? Current : 0 );
+
+        for ( var i = Start; i < Len; i++ )
+        {
+            if ( titles[i].Search_GetId )
+            {
+                Id = titles[i].Search_GetId(true, i === Current ? true : false);
+                if ( null !== Id )
+                    return Id;
+            }
+        }
+    }
+    else
+    {
+        var Start = ( -1 !== Current ? Current : Len - 1 );
+
+        for ( var i = Start; i >= 0; i-- )
+        {
+            if (titles[i].Search_GetId )
+            {
+                Id = titles[i].Search_GetId(false, i === Current ? true : false);
+                if ( null !== Id )
+                    return Id;
+            }
+        }
+    }
+    return null;
+};
+    
+function getPtsFromSeries(ser)
+{
+    if(ser)
+    {
+        if(ser.val)
+        {
+            if(ser.val.numRef && ser.val.numRef.numCache)
+                return ser.val.numRef.numCache.pts;
+            else if(ser.val.numLit)
+                return ser.val.numLit.pts;
+        }
+        else if(ser.yVal)
+        {
+            if(ser.yVal.numRef && ser.yVal.numRef.numCache)
+                return ser.yVal.numRef.numCache.pts;
+            else if(ser.yVal.numLit)
+                return ser.yVal.numLit.pts;
+        }
+    }
+    return [];
+}
+    
+function getCatStringPointsFromSeries(ser)
+{
+    if(!ser){
+        return null;
+    }
+    return getStringPointsFromCat(ser.cat);
+}
+
+function getStringPointsFromCat(oCat){
+    if(oCat){
+        if(oCat.strRef && oCat.strRef.strCache)
+        {
+            return oCat.strRef.strCache;
+        }
+        else if(oCat.strLit)
+        {
+            return oCat.strLit;
+        }
+    }
+    return null;
+}
+
+function getMaxIdx(arr)
+{
+    var max_idx = 0;
+    for(var i = 0; i < arr.length;++i)
+        arr[i].idx > max_idx && (max_idx = arr[i].idx);
+    return max_idx+1;
+}
+    
+function getArrayFillsFromBase(arrBaseFills, needFillsCount)
+{
+    var ret = [];
+    var nMaxCycleIdx = parseInt((needFillsCount - 1)/arrBaseFills.length);
+    for(var i = 0;  i <  needFillsCount; ++i)
+    {
+        var nCycleIdx = ( i / arrBaseFills.length ) >> 0;
+        var fShadeTint = ( nCycleIdx + 1 ) / (nMaxCycleIdx + 2) * 1.4 - 0.7;
+
+        if(fShadeTint < 0)
+        {
+            fShadeTint = -(1 + fShadeTint);
+        }
+        else
+        {
+            fShadeTint = (1 - fShadeTint);
+        }
+        var color = CreateUniFillSolidFillWidthTintOrShade(arrBaseFills[i % arrBaseFills.length], fShadeTint);
+        ret.push(color);
+    }
+    return ret;
+}
+
+function GetTypeMarkerByIndex(index)
+{
+    return AscFormat.MARKER_SYMBOL_TYPE[index % 9];
+}
+
+function CreateUnfilFromRGB(r, g, b)
+{
+    var ret =  new AscFormat.CUniFill();
+    ret.setFill(new AscFormat.CSolidFill());
+    ret.fill.setColor(new AscFormat.CUniColor());
+    ret.fill.color.setColor(new AscFormat.CRGBColor());
+    ret.fill.color.color.setColor(r, g, b);
+    return ret;
+}
+
+function CreateColorMapByIndex(index)
+{
+    var ret = [];
+    switch(index)
+    {
+        case 1:
+        {
+            ret.push(CreateUnfilFromRGB(85, 85, 85));
+            ret.push(CreateUnfilFromRGB(158, 158, 158));
+            ret.push(CreateUnfilFromRGB(114, 114, 114));
+            ret.push(CreateUnfilFromRGB(70, 70, 70));
+            ret.push(CreateUnfilFromRGB(131, 131, 131));
+            ret.push(CreateUnfilFromRGB(193, 193, 193));
+            break;
+        }
+        case 2:
+        {
+            for(var i = 0;  i < 6; ++i)
+            {
+                ret.push(CreateUnifillSolidFillSchemeColorByIndex(i));
+            }
+            break;
+        }
+        default:
+        {
+            ret.push(CreateUnifillSolidFillSchemeColorByIndex(index - 3));
+            break;
+        }
+    }
+    return ret;
+}
+
+
+function CreateUniFillSolidFillWidthTintOrShade(unifill, effectVal)
+{
+    var ret = unifill.createDuplicate();
+    var unicolor = ret.fill.color;
+    if(effectVal !== 0)
+    {
+        effectVal*=100000.0;
+        if(!unicolor.Mods)
+            unicolor.setMods(new AscFormat.CColorModifiers());
+        var mod = new AscFormat.CColorMod();
+        if(effectVal > 0)
+        {
+            mod.setName("tint");
+            mod.setVal(effectVal);
+        }
+        else
+        {
+            mod.setName("shade");
+            mod.setVal(Math.abs(effectVal));
+        }
+        unicolor.Mods.addMod(mod);
+    }
+    return ret;
+}
+    
+function CreateUnifillSolidFillSchemeColor(colorId, tintOrShade)
+{
+    var unifill = new AscFormat.CUniFill();
+    unifill.setFill(new AscFormat.CSolidFill());
+    unifill.fill.setColor(new AscFormat.CUniColor());
+    unifill.fill.color.setColor(new AscFormat.CSchemeColor());
+    unifill.fill.color.color.setId(colorId);
+    return CreateUniFillSolidFillWidthTintOrShade(unifill, tintOrShade);
+}
+
+function CreateNoFillLine()
+{
+    var ret = new AscFormat.CLn();
+    ret.setFill(CreateNoFillUniFill());
+    return ret;
+}
+
+function CreateNoFillUniFill()
+{
+    var ret = new AscFormat.CUniFill();
+    ret.setFill(new AscFormat.CNoFill());
+    return ret;
+}
+
+function CExternalData()
+{
+    this.autoUpdate = null;
+    this.id  = null;
+
+    this.Id = g_oIdCounter.Get_NewId();
+    g_oTableId.Add(this, this.Id);
+}
+
+CExternalData.prototype =
+{
+    Get_Id: function()
+    {
+        return this.Id;
+    },
+
+    Refresh_RecalcData: function()
+    {},
+
+    getObjectType: function()
+    {
+        return AscDFH.historyitem_type_ExternalData;
+    },
+
+    setAutoUpdate: function(pr)
+    {
+        History.Add(new CChangesDrawingsBool(this, AscDFH.historyitem_ExternalData_SetAutoUpdate, this.autoUpdate,  pr));
+        this.autoUpdate = pr;
+    },
+
+    setId: function(pr)
+    {
+        History.Add(new CChangesDrawingsString(this, AscDFH.historyitem_ExternalData_SetId, this.id,  pr));
+        this.id = pr;
+    }
+};
+
+function CPivotSource()
+{
+    this.fmtId = null;
+    this.name  = null;
+    this.Id = g_oIdCounter.Get_NewId();
+    g_oTableId.Add(this, this.Id);
+}
+
+CPivotSource.prototype =
+{
+    Get_Id: function()
+    {
+        return this.Id;
+    },
+
+
+    Refresh_RecalcData: function()
+    {},
+
+    getObjectType: function()
+    {
+        return AscDFH.historyitem_type_PivotSource;
+    },
+    Write_ToBinary2: function (w)
+    {
+        w.WriteLong(this.getObjectType());
+        w.WriteString2(this.Id);
+    },
+
+    Read_FromBinary2: function (r)
+    {
+        this.Id = r.GetString2();
+    },
+
+    setFmtId: function(pr)
+    {
+        History.Add(new CChangesDrawingsLong(this, AscDFH.historyitem_PivotSource_SetFmtId, this.fmtId,  pr));
+        this.fmtId = pr;
+    },
+
+    setName: function(pr)
+    {
+        History.Add(new CChangesDrawingsString(this, AscDFH.historyitem_PivotSource_SetName, this.name,  pr));
+        this.name = pr;
+    },
+
+
+    createDuplicate: function()
+    {
+        var copy = new CPivotSource();
+        if(AscFormat.isRealNumber(this.fmtId))
+        {
+            copy.setFmtId(this.fmtId);
+        }
+        if(typeof  this.name === "string")
+        {
+            copy.setName(this.name);
+        }
+        return copy;
+    }
+};
+
+
+function CProtection()
+{
+    this.chartObject   = null;
+    this.data          = null;
+    this.formatting    = null;
+    this.selection     = null;
+    this.userInterface = null;
+
+    this.Id = g_oIdCounter.Get_NewId();
+    g_oTableId.Add(this, this.Id);
+}
+
+CProtection.prototype =
+{
+    Get_Id: function()
+    {
+        return this.Id;
+    },
+
+
+    Refresh_RecalcData: function()
+    {},
+
+    rototype['sync_LockComment']                          = asc_docs_api.prototype.sync_LockComment;
+	asc_docs_api.prototype['sync_UnLockComment']                        = asc_docs_api.prototype.sync_UnLockComment;
+	asc_docs_api.prototype['sync_LockHeaderFooters']                    = asc_docs_api.prototype.sync_LockHeaderFooters;
+	asc_docs_api.prototype['sync_LockDocumentProps']                    = asc_docs_api.prototype.sync_LockDocumentProps;
+	asc_docs_api.prototype['sync_UnLockHeaderFooters']                  = asc_docs_api.prototype.sync_UnLockHeaderFooters;
+	asc_docs_api.prototype['sync_UnLockDocumentProps']                  = asc_docs_api.prototype.sync_UnLockDocumentProps;
+	asc_docs_api.prototype['sync_CollaborativeChanges']                 = asc_docs_api.prototype.sync_CollaborativeChanges;
+	asc_docs_api.prototype['sync_LockDocumentSchema']                   = asc_docs_api.prototype.sync_LockDocumentSchema;
+	asc_docs_api.prototype['sync_UnLockDocumentSchema']                 = asc_docs_api.prototype.sync_UnLockDocumentSchema;
+	asc_docs_api.prototype['zoomIn']                                    = asc_docs_api.prototype.zoomIn;
+	asc_docs_api.prototype['zoomOut']                                   = asc_docs_api.prototype.zoomOut;
+	asc_docs_api.prototype['zoomFitToPage']                             = asc_docs_api.prototype.zoomFitToPage;
+	asc_docs_api.prototype['zoomFitToWidth']                            = asc_docs_api.prototype.zoomFitToWidth;
+	asc_docs_api.prototype['zoomCustomMode']                            = asc_docs_api.prototype.zoomCustomMode;
+	asc_docs_api.prototype['zoom100']                                   = asc_docs_api.prototype.zoom100;
+	asc_docs_api.prototype['zoom']                                      = asc_docs_api.prototype.zoom;
+	asc_docs_api.prototype['goToPage']                                  = asc_docs_api.prototype.goToPage;
+	asc_docs_api.prototype['getCountPages']                             = asc_docs_api.prototype.getCountPages;
+	asc_docs_api.prototype['getCurrentPage']                            = asc_docs_api.prototype.getCurrentPage;
+	asc_docs_api.prototype['sync_countPagesCallback']                   = asc_docs_api.prototype.sync_countPagesCallback;
+	asc_docs_api.prototype['sync_currentPageCallback']                  = asc_docs_api.prototype.sync_currentPageCallback;
+	asc_docs_api.prototype['asc_enableKeyEvents']                       = asc_docs_api.prototype.asc_enableKeyEvents;
+	asc_docs_api.prototype['GenerateStyles']                            = asc_docs_api.prototype.GenerateStyles;
+	asc_docs_api.prototype['asyncFontsDocumentEndLoaded']               = asc_docs_api.prototype.asyncFontsDocumentEndLoaded;
+	asc_docs_api.prototype['CreateFontsCharMap']                        = asc_docs_api.prototype.CreateFontsCharMap;
+	asc_docs_api.prototype['sync_SendThemeColors']                      = asc_docs_api.prototype.sync_SendThemeColors;
+	asc_docs_api.prototype['ChangeColorScheme']                         = asc_docs_api.prototype.ChangeColorScheme;
+	asc_docs_api.prototype['asyncImagesDocumentEndLoaded']              = asc_docs_api.prototype.asyncImagesDocumentEndLoaded;
+	asc_docs_api.prototype['UpdateInterfaceState']                      = asc_docs_api.prototype.UpdateInterfaceState;
+	asc_docs_api.prototype['asyncFontEndLoaded']                        = asc_docs_api.prototype.asyncFontEndLoaded;
+	asc_docs_api.prototype['asyncImageEndLoaded']                       = asc_docs_api.prototype.asyncImageEndLoaded;
+	asc_docs_api.prototype['asyncImageEndLoadedBackground']             = asc_docs_api.prototype.asyncImageEndLoadedBackground;
+	asc_docs_api.prototype['IsAsyncOpenDocumentImages']                 = asc_docs_api.prototype.IsAsyncOpenDocumentImages;
+	asc_docs_api.prototype['pre_Paste']                                 = asc_docs_api.prototype.pre_Paste;
+	asc_docs_api.prototype['pre_Save']                                  = asc_docs_api.prototype.pre_Save;
+	asc_docs_api.prototype['SyncLoadImages']                            = asc_docs_api.prototype.SyncLoadImages;
+	asc_docs_api.prototype['SyncLoadImages_callback']                   = asc_docs_api.prototype.SyncLoadImages_callback;
+	asc_docs_api.prototype['initEvents2MobileAdvances']                 = asc_docs_api.prototype.initEvents2MobileAdvances;
+	asc_docs_api.prototype['ViewScrollToX']                             = asc_docs_api.prototype.ViewScrollToX;
+	asc_docs_api.prototype['ViewScrollToY']                             = asc_docs_api.prototype.ViewScrollToY;
+	asc_docs_api.prototype['GetDocWidthPx']                             = asc_docs_api.prototype.GetDocWidthPx;
+	asc_docs_api.prototype['GetDocHeightPx']                            = asc_docs_api.prototype.GetDocHeightPx;
+	asc_docs_api.prototype['ClearSearch']                               = asc_docs_api.prototype.ClearSearch;
+	asc_docs_api.prototype['GetCurrentVisiblePage']                     = asc_docs_api.prototype.GetCurrentVisiblePage;
+	asc_docs_api.prototype['asc_setAutoSaveGap']                        = asc_docs_api.prototype.asc_setAutoSaveGap;
+	asc_docs_api.prototype['asc_SetDocumentPlaceChangedEnabled']        = asc_docs_api.prototype.asc_SetDocumentPlaceChangedEnabled;
+	asc_docs_api.prototype['asc_SetViewRulers']                         = asc_docs_api.prototype.asc_SetViewRulers;
+	asc_docs_api.prototype['asc_SetViewRulersChange']                   = asc_docs_api.prototype.asc_SetViewRulersChange;
+	asc_docs_api.prototype['asc_GetViewRulers']                         = asc_docs_api.prototype.asc_GetViewRulers;
+	asc_docs_api.prototype['asc_SetDocumentUnits']                      = asc_docs_api.prototype.asc_SetDocumentUnits;
+	asc_docs_api.prototype['GoToHeader']                                = asc_docs_api.prototype.GoToHeader;
+	asc_docs_api.prototype['GoToFooter']                                = asc_docs_api.prototype.GoToFooter;
+	asc_docs_api.prototype['ExitHeader_Footer']                         = asc_docs_api.prototype.ExitHeader_Footer;
+	asc_docs_api.prototype['GetCurrentPixOffsetY']                      = asc_docs_api.prototype.GetCurrentPixOffsetY;
+	asc_docs_api.prototype['SetPaintFormat']                            = asc_docs_api.prototype.SetPaintFormat;
+	asc_docs_api.prototype['ChangeShapeType']                           = asc_docs_api.prototype.ChangeShapeType;
+	asc_docs_api.prototype['sync_PaintFormatCallback']                  = asc_docs_api.prototype.sync_PaintFormatCallback;
+	asc_docs_api.prototype['SetMarkerFormat']                           = asc_docs_api.prototype.SetMarkerFormat;
+	asc_docs_api.prototype['sync_MarkerFormatCallback']                 = asc_docs_api.prototype.sync_MarkerFormatCallback;
+	asc_docs_api.prototype['StartAddShape']                             = asc_docs_api.prototype.StartAddShape;
+	asc_docs_api.prototype['AddShapeOnCurrentPage']                     = asc_docs_api.prototype.AddShapeOnCurrentPage;
+	asc_docs_api.prototype['AddTextArt']                                = asc_docs_api.prototype.AddTextArt;
+	asc_docs_api.prototype['sync_StartAddShapeCallback']                = asc_docs_api.prototype.sync_StartAddShapeCallback;
+	asc_docs_api.prototype['CanGroup']                                  = asc_docs_api.prototype.CanGroup;
+	asc_docs_api.prototype['CanUnGroup']                                = asc_docs_api.prototype.CanUnGroup;
+	asc_docs_api.prototype['CanChangeWrapPolygon']                      = asc_docs_api.prototype.CanChangeWrapPolygon;
+	asc_docs_api.prototype['StartChangeWrapPolygon']                    = asc_docs_api.prototype.StartChangeWrapPolygon;
+	asc_docs_api.prototype['ClearFormating']                            = asc_docs_api.prototype.ClearFormating;
+	asc_docs_api.prototype['GetSectionInfo']                            = asc_docs_api.prototype.GetSectionInfo;
+	asc_docs_api.prototype['add_SectionBreak']                          = asc_docs_api.prototype.add_SectionBreak;
+	asc_docs_api.prototype['asc_setViewMode']                           = asc_docs_api.prototype.asc_setViewMode;
+	asc_docs_api.prototype['asc_setRestriction']                        = asc_docs_api.prototype.asc_setRestriction;
+	asc_docs_api.prototype['OnMouseUp']                                 = asc_docs_api.prototype.OnMouseUp;
+	asc_docs_api.prototype['asyncImageEndLoaded2']                      = asc_docs_api.prototype.asyncImageEndLoaded2;
+	asc_docs_api.prototype['SetDrawImagePlaceParagraph']                = asc_docs_api.prototype.SetDrawImagePlaceParagraph;
+	asc_docs_api.prototype['asc_getMasterCommentId']                    = asc_docs_api.prototype.asc_getMasterCommentId;
+	asc_docs_api.prototype['asc_getAnchorPosition']                     = asc_docs_api.prototype.asc_getAnchorPosition;
+	asc_docs_api.prototype['asc_getChartObject']                        = asc_docs_api.prototype.asc_getChartObject;
+	asc_docs_api.prototype['asc_addChartDrawingObject']                 = asc_docs_api.prototype.asc_addChartDrawingObject;
+	asc_docs_api.prototype['asc_doubleClickOnChart']                    = asc_docs_api.prototype.asc_doubleClickOnChart;
+	asc_docs_api.prototype['asc_onCloseChartFrame']                     = asc_docs_api.prototype.asc_onCloseChartFrame;
+	asc_docs_api.prototype['asc_editChartDrawingObject']                = asc_docs_api.prototype.asc_editChartDrawingObject;
+	asc_docs_api.prototype['asc_getChartPreviews']                      = asc_docs_api.prototype.asc_getChartPreviews;
+	asc_docs_api.prototype['asc_getTextArtPreviews']                    = asc_docs_api.prototype.asc_getTextArtPreviews;
+	asc_docs_api.prototype['sync_closeChartEditor']                     = asc_docs_api.prototype.sync_closeChartEditor;
+	asc_docs_api.prototype['asc_setDrawCollaborationMarks']             = asc_docs_api.prototype.asc_setDrawCollaborationMarks;
+	asc_docs_api.prototype['asc_AddMath']                               = asc_docs_api.prototype.asc_AddMath;
+	asc_docs_api.prototype['asc_AddMath2']                              = asc_docs_api.prototype.asc_AddMath2;
+	asc_docs_api.prototype['asc_AddPageCount']                          = asc_docs_api.prototype.asc_AddPageCount;
+	asc_docs_api.prototype['asc_StartMailMerge']                        = asc_docs_api.prototype.asc_StartMailMerge;
+	asc_docs_api.prototype['asc_StartMailMergeByList']                  = asc_docs_api.prototype.asc_StartMailMergeByList;
+	asc_docs_api.prototype['asc_GetReceptionsCount']                    = asc_docs_api.prototype.asc_GetReceptionsCount;
+	asc_docs_api.prototype['asc_GetMailMergeFieldsNameList']            = asc_docs_api.prototype.asc_GetMailMergeFieldsNameList;
+	asc_docs_api.prototype['asc_AddMailMergeField']                     = asc_docs_api.prototype.asc_AddMailMergeField;
+	asc_docs_api.prototype['asc_SetHighlightMailMergeFields']           = asc_docs_api.prototype.asc_SetHighlightMailMergeFields;
+	asc_docs_api.prototype['asc_PreviewMailMergeResult']                = asc_docs_api.prototype.asc_PreviewMailMergeResult;
+	asc_docs_api.prototype['asc_EndPreviewMailMergeResult']             = asc_docs_api.prototype.asc_EndPreviewMailMergeResult;
+	asc_docs_api.prototype['sync_StartMailMerge']                       = asc_docs_api.prototype.sync_StartMailMerge;
+	asc_docs_api.prototype['sync_PreviewMailMergeResult']               = asc_docs_api.prototype.sync_PreviewMailMergeResult;
+	asc_docs_api.prototype['sync_EndPreviewMailMergeResult']            = asc_docs_api.prototype.sync_EndPreviewMailMergeResult;
+	asc_docs_api.prototype['sync_HighlightMailMergeFields']             = asc_docs_api.prototype.sync_HighlightMailMergeFields;
+	asc_docs_api.prototype['asc_getMailMergeData']                      = asc_docs_api.prototype.asc_getMailMergeData;
+	asc_docs_api.prototype['asc_setMailMergeData']                      = asc_docs_api.prototype.asc_setMailMergeData;
+	asc_docs_api.prototype['asc_sendMailMergeData']                     = asc_docs_api.prototype.asc_sendMailMergeData;
+	asc_docs_api.prototype['asc_GetMailMergeFiledValue']                = asc_docs_api.prototype.asc_GetMailMergeFiledValue;
+	asc_docs_api.prototype['asc_GetStyleFromFormatting']                = asc_docs_api.prototype.asc_GetStyleFromFormatting;
+	asc_docs_api.prototype['asc_AddNewStyle']                           = asc_docs_api.prototype.asc_AddNewStyle;
+	asc_docs_api.prototype['asc_RemoveStyle']                           = asc_docs_api.prototype.asc_RemoveStyle;
+	asc_docs_api.prototype['asc_RemoveAllCustomStyles']                 = asc_docs_api.prototype.asc_RemoveAllCustomStyles;
+	asc_docs_api.prototype['asc_IsStyleDefault']                        = asc_docs_api.prototype.asc_IsStyleDefault;
+	asc_docs_api.prototype['asc_IsDefaultStyleChanged']                 = asc_docs_api.prototype.asc_IsDefaultStyleChanged;
+	asc_docs_api.prototype['asc_GetStyleNameById']                      = asc_docs_api.prototype.asc_GetStyleNameById;
+	asc_docs_api.prototype['asc_SetTrackRevisions']                     = asc_docs_api.prototype.asc_SetTrackRevisions;
+	asc_docs_api.prototype['asc_IsTrackRevisions']                      = asc_docs_api.prototype.asc_IsTrackRevisions;
+	asc_docs_api.prototype['sync_BeginCatchRevisionsChanges']           = asc_docs_api.prototype.sync_BeginCatchRevisionsChanges;
+	asc_docs_api.prototype['sync_EndCatchRevisionsChanges']             = asc_docs_api.prototype.sync_EndCatchRevisionsChanges;
+	asc_docs_api.prototype['asc_GetRevisionsChangesStack']              = asc_docs_api.prototype.asc_GetRevisionsChangesStack;
+	asc_docs_api.prototype['sync_AddRevisionsChange']                   = asc_docs_api.prototype.sync_AddRevisionsChange;
+	asc_docs_api.prototype['asc_AcceptChanges']                         = asc_docs_api.prototype.asc_AcceptChanges;
+	asc_docs_api.prototype['asc_RejectChanges']                         = asc_docs_api.prototype.asc_RejectChanges;
+	asc_docs_api.prototype['asc_HaveRevisionsChanges']                  = asc_docs_api.prototype.asc_HaveRevisionsChanges;
+	asc_docs_api.prototype['asc_HaveNewRevisionsChanges']               = asc_docs_api.prototype.asc_HaveNewRevisionsChanges;
+	asc_docs_api.prototype['asc_GetNextRevisionsChange']                = asc_docs_api.prototype.asc_GetNextRevisionsChange;
+	asc_docs_api.prototype['asc_GetPrevRevisionsChange']                = asc_docs_api.prototype.asc_GetPrevRevisionsChange;
+	asc_docs_api.prototype['sync_UpdateRevisionsChangesPosition']       = asc_docs_api.prototype.sync_UpdateRevisionsChangesPosition;
+	asc_docs_api.prototype['asc_AcceptAllChanges']                      = asc_docs_api.prototype.asc_AcceptAllChanges;
+	asc_docs_api.prototype['asc_RejectAllChanges']                      = asc_docs_api.prototype.asc_RejectAllChanges;
+	asc_docs_api.prototype['asc_stopSaving']                            = asc_docs_api.prototype.asc_stopSaving;
+	asc_docs_api.prototype['asc_continueSaving']                        = asc_docs_api.prototype.asc_continueSaving;
+	asc_docs_api.prototype['asc_undoAllChanges']                        = asc_docs_api.prototype.asc_undoAllChanges;
+	asc_docs_api.prototype['asc_CloseFile']                             = asc_docs_api.prototype.asc_CloseFile;
+	asc_docs_api.prototype['asc_addComment']                            = asc_docs_api.prototype.asc_addComment;
+	asc_docs_api.prototype['asc_SetFastCollaborative']                  = asc_docs_api.prototype.asc_SetFastCollaborative;
+	asc_docs_api.prototype['asc_isOffline']                             = asc_docs_api.proto

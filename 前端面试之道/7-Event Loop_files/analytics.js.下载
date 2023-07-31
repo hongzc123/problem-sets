@@ -1,0 +1,715 @@
+      "graceful-fs": "^4.1.2",
+        "neo-async": "^2.5.0"
+      }
+    },
+    "wbuf": {
+      "version": "1.7.3",
+      "resolved": "http://registry.npm.taobao.org/wbuf/download/wbuf-1.7.3.tgz",
+      "integrity": "sha1-wdjRSTFtPqhShIiVy2oL/oh7h98=",
+      "dev": true,
+      "requires": {
+        "minimalistic-assert": "^1.0.0"
+      }
+    },
+    "wcwidth": {
+      "version": "1.0.1",
+      "resolved": "http://registry.npm.taobao.org/wcwidth/download/wcwidth-1.0.1.tgz",
+      "integrity": "sha1-8LDc+RW8X/FSivrbLA4XtTLaL+g=",
+      "dev": true,
+      "requires": {
+        "defaults": "^1.0.3"
+      }
+    },
+    "webpack": {
+      "version": "4.39.3",
+      "resolved": "https://registry.npm.taobao.org/webpack/download/webpack-4.39.3.tgz",
+      "integrity": "sha1-oCF50QMhVrcTtuwtp+DfnQN971A=",
+      "dev": true,
+      "requires": {
+        "@webassemblyjs/ast": "1.8.5",
+        "@webassemblyjs/helper-module-context": "1.8.5",
+        "@webassemblyjs/wasm-edit": "1.8.5",
+        "@webassemblyjs/wasm-parser": "1.8.5",
+        "acorn": "^6.2.1",
+        "ajv": "^6.10.2",
+        "ajv-keywords": "^3.4.1",
+        "chrome-trace-event": "^1.0.2",
+        "enhanced-resolve": "^4.1.0",
+        "eslint-scope": "^4.0.3",
+        "json-parse-better-errors": "^1.0.2",
+        "loader-runner": "^2.4.0",
+        "loader-utils": "^1.2.3",
+        "memory-fs": "^0.4.1",
+        "micromatch": "^3.1.10",
+        "mkdirp": "^0.5.1",
+        "neo-async": "^2.6.1",
+        "node-libs-browser": "^2.2.1",
+        "schema-utils": "^1.0.0",
+        "tapable": "^1.1.3",
+        "terser-webpack-plugin": "^1.4.1",
+        "watchpack": "^1.6.0",
+        "webpack-sources": "^1.4.1"
+      }
+    },
+    "webpack-bundle-analyzer": {
+      "version": "3.4.1",
+      "resolved": "https://registry.npm.taobao.org/webpack-bundle-analyzer/download/webpack-bundle-analyzer-3.4.1.tgz",
+      "integrity": "sha1-QwVEx7oWMbrM9nNHXKgwDLdKPEc=",
+      "dev": true,
+      "requires": {
+        "acorn": "^6.0.7",
+        "acorn-walk": "^6.1.1",
+        "bfj": "^6.1.1",
+        "chalk": "^2.4.1",
+        "commander": "^2.18.0",
+        "ejs": "^2.6.1",
+        "express": "^4.16.3",
+        "filesize": "^3.6.1",
+        "gzip-size": "^5.0.0",
+        "lodash": "^4.17.15",
+        "mkdirp": "^0.5.1",
+        "opener": "^1.5.1",
+        "ws": "^6.0.0"
+      }
+    },
+    "webpack-chain": {
+      "version": "4.12.1",
+      "resolved": "https://registry.npm.taobao.org/webpack-chain/download/webpack-chain-4.12.1.tgz",
+      "integrity": "sha1-bIQ5u7KrVQlS1g4eqTGRQZBsAqY=",
+      "dev": true,
+      "requires": {
+        "deepmerge": "^1.5.2",
+        "javascript-stringify": "^1.6.0"
+      }
+    },
+    "webpack-dev-middleware": {
+      "version": "3.7.1",
+      "resolved": "https://registry.npm.taobao.org/webpack-dev-middleware/download/webpack-dev-middleware-3.7.1.tgz",
+      "integrity": "sha1-EWeuoCr6A0SJhpuDaP6f7RrqfQk=",
+      "dev": true,
+      "requires": {
+        "memory-fs": "^0.4.1",
+        "mime": "^2.4.4",
+        "mkdirp": "^0.5.1",
+        "range-parser": "^1.2.1",
+        "webpack-log": "^2.0.0"
+      }
+    },
+    "webpack-dev-server": {
+      "version": "3.8.0",
+      "resolved": "https://registry.npm.taobao.org/webpack-dev-server/download/webpack-dev-server-3.8.0.tgz",
+      "integrity": "sha1-BsxPwvRAQoUI0Ol3DaH+8Q5e8o0=",
+      "dev": true,
+      "requires": {
+        "ansi-html": "0.0.7",
+        "bonjour": "^3.5.0",
+        "chokidar": "^2.1.6",
+        "compression": "^1.7.4",
+        "connect-history-api-fallback": "^1.6.0",
+        "debug": "^4.1.1",
+        "del": "^4.1.1",
+        "express": "^4.17.1",
+        "html-entities": "^1.2.1",
+        "http-proxy-middleware": "^0.19.1",
+        "import-local": "^2.0.0",
+        "internal-ip": "^4.3.0",
+        "ip": "^1.1.5",
+        "is-absolute-url": "^3.0.0",
+        "killable": "^1.0.1",
+        "loglevel": "^1.6.3",
+        "opn": "^5.5.0",
+        "p-retry": "^3.0.1",
+        "portfinder": "^1.0.21",
+        "schema-utils": "^1.0.0",
+        "selfsigned": "^1.10.4",
+        "semver": "^6.3.0",
+        "serve-index": "^1.9.1",
+        "sockjs": "0.3.19",
+        "sockjs-client": "1.3.0",
+        "spdy": "^4.0.1",
+        "strip-ansi": "^3.0.1",
+        "supports-color": "^6.1.0",
+        "url": "^0.11.0",
+        "webpack-dev-middleware": "^3.7.0",
+        "webpack-log": "^2.0.0",
+        "ws": "^6.2.1",
+        "yargs": "12.0.5"
+      },
+      "dependencies": {
+        "ansi-regex": {
+          "version": "2.1.1",
+          "resolved": "http://registry.npm.taobao.org/ansi-regex/download/ansi-regex-2.1.1.tgz",
+          "integrity": "sha1-w7M6te42DYbg5ijwRorn7yfWVN8=",
+          "dev": true
+        },
+        "cliui": {
+          "version": "4.1.0",
+          "resolved": "http://registry.npm.taobao.org/cliui/download/cliui-4.1.0.tgz",
+          "integrity": "sha1-NIQi2+gtgAswIu709qwQvy5NG0k=",
+          "dev": true,
+          "requires": {
+            "string-width": "^2.1.1",
+            "strip-ansi": "^4.0.0",
+            "wrap-ansi": "^2.0.0"
+          },
+          "dependencies": {
+            "ansi-regex": {
+              "version": "3.0.0",
+              "resolved": "http://registry.npm.taobao.org/ansi-regex/download/ansi-regex-3.0.0.tgz",
+              "integrity": "sha1-7QMXwyIGT3lGbAKWa922Bas32Zg=",
+              "dev": true
+            },
+            "strip-ansi": {
+              "version": "4.0.0",
+              "resolved": "http://registry.npm.taobao.org/strip-ansi/download/strip-ansi-4.0.0.tgz",
+              "integrity": "sha1-qEeQIusaw2iocTibY1JixQXuNo8=",
+              "dev": true,
+              "requires": {
+                "ansi-regex": "^3.0.0"
+              }
+            }
+          }
+        },
+        "find-up": {
+          "version": "3.0.0",
+          "resolved": "https://registry.npm.taobao.org/find-up/download/find-up-3.0.0.tgz",
+          "integrity": "sha1-SRafHXmTQwZG2mHsxa41XCHJe3M=",
+          "dev": true,
+          "requires": {
+            "locate-path": "^3.0.0"
+          }
+        },
+        "get-caller-file": {
+          "version": "1.0.3",
+          "resolved": "http://registry.npm.taobao.org/get-caller-file/download/get-caller-file-1.0.3.tgz",
+          "integrity": "sha1-+Xj6TJDR3+f/LWvtoqUV5xO9z0o=",
+          "dev": true
+        },
+        "is-absolute-url": {
+          "version": "3.0.1",
+          "resolved": "https://registry.npm.taobao.org/is-absolute-url/download/is-absolute-url-3.0.1.tgz",
+          "integrity": "sha1-4xXL3LvD1niVMtWRlUrHig5QSfY=",
+          "dev": true
+        },
+        "is-fullwidth-code-point": {
+          "version": "1.0.0",
+          "resolved": "http://registry.npm.taobao.org/is-fullwidth-code-point/download/is-fullwidth-code-point-1.0.0.tgz",
+          "integrity": "sha1-754xOG8DGn8NZDr4L95QxFfvAMs=",
+          "dev": true,
+          "requires": {
+            "number-is-nan": "^1.0.0"
+          }
+        },
+        "locate-path": {
+          "version": "3.0.0",
+          "resolved": "https://registry.npm.taobao.org/locate-path/download/locate-path-3.0.0.tgz",
+          "integrity": "sha1-2+w7OrdZdYBxtY/ln8QYca8hQA4=",
+          "dev": true,
+          "requires": {
+            "p-locate": "^3.0.0",
+            "path-exists": "^3.0.0"
+          }
+        },
+        "p-limit": {
+          "version": "2.2.1",
+          "resolved": "https://registry.npm.taobao.org/p-limit/download/p-limit-2.2.1.tgz",
+          "integrity": "sha1-qgeniMwxUck5tRMfY1cPDdIAlTc=",
+          "dev": true,
+          "requires": {
+            "p-try": "^2.0.0"
+          }
+        },
+        "p-locate": {
+          "version": "3.0.0",
+          "resolved": "http://registry.npm.taobao.org/p-locate/download/p-locate-3.0.0.tgz",
+          "integrity": "sha1-Mi1poFwCZLJZl9n0DNiokasAZKQ=",
+          "dev": true,
+          "requires": {
+            "p-limit": "^2.0.0"
+          }
+        },
+        "p-try": {
+          "version": "2.2.0",
+          "resolved": "http://registry.npm.taobao.org/p-try/download/p-try-2.2.0.tgz",
+          "integrity": "sha1-yyhoVA4xPWHeWPr741zpAE1VQOY=",
+          "dev": true
+        },
+        "require-main-filename": {
+          "version": "1.0.1",
+          "resolved": "http://registry.npm.taobao.org/require-main-filename/download/require-main-filename-1.0.1.tgz",
+          "integrity": "sha1-l/cXtp1IeE9fUmpsWqj/3aBVpNE=",
+          "dev": true
+        },
+        "semver": {
+          "version": "6.3.0",
+          "resolved": "https://registry.npm.taobao.org/semver/download/semver-6.3.0.tgz?cache=0&sync_timestamp=1565627380363&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsemver%2Fdownload%2Fsemver-6.3.0.tgz",
+          "integrity": "sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=",
+          "dev": true
+        },
+        "strip-ansi": {
+          "version": "3.0.1",
+          "resolved": "http://registry.npm.taobao.org/strip-ansi/download/strip-ansi-3.0.1.tgz",
+          "integrity": "sha1-ajhfuIU9lS1f8F0Oiq+UJ43GPc8=",
+          "dev": true,
+          "requires": {
+            "ansi-regex": "^2.0.0"
+          }
+        },
+        "supports-color": {
+          "version": "6.1.0",
+          "resolved": "https://registry.npm.taobao.org/supports-color/download/supports-color-6.1.0.tgz",
+          "integrity": "sha1-B2Srxpxj1ayELdSGfo0CXogN+PM=",
+          "dev": true,
+          "requires": {
+            "has-flag": "^3.0.0"
+          }
+        },
+        "wrap-ansi": {
+          "version": "2.1.0",
+          "resolved": "https://registry.npm.taobao.org/wrap-ansi/download/wrap-ansi-2.1.0.tgz",
+          "integrity": "sha1-2Pw9KE3QV5T+hJc8rs3Rz4JP3YU=",
+          "dev": true,
+          "requires": {
+            "string-width": "^1.0.1",
+            "strip-ansi": "^3.0.1"
+          },
+          "dependencies": {
+            "string-width": {
+              "version": "1.0.2",
+              "resolved": "http://registry.npm.taobao.org/string-width/download/string-width-1.0.2.tgz",
+              "integrity": "sha1-EYvfW4zcUaKn5w0hHgfisLmxB9M=",
+              "dev": true,
+              "requires": {
+                "code-point-at": "^1.0.0",
+                "is-fullwidth-code-point": "^1.0.0",
+                "strip-ansi": "^3.0.0"
+              }
+            }
+          }
+        },
+        "yargs": {
+          "version": "12.0.5",
+          "resolved": "https://registry.npm.taobao.org/yargs/download/yargs-12.0.5.tgz",
+          "integrity": "sha1-BfWZe2CWR7ZPZrgeO0sQo2jnrRM=",
+          "dev": true,
+          "requires": {
+            "cliui": "^4.0.0",
+            "decamelize": "^1.2.0",
+            "find-up": "^3.0.0",
+            "get-caller-file": "^1.0.1",
+            "os-locale": "^3.0.0",
+            "require-directory": "^2.1.1",
+            "require-main-filename": "^1.0.1",
+            "set-blocking": "^2.0.0",
+            "string-width": "^2.0.0",
+            "which-module": "^2.0.0",
+            "y18n": "^3.2.1 || ^4.0.0",
+            "yargs-parser": "^11.1.1"
+          }
+        },
+        "yargs-parser": {
+          "version": "11.1.1",
+          "resolved": "https://registry.npm.taobao.org/yargs-parser/download/yargs-parser-11.1.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyargs-parser%2Fdownload%2Fyargs-parser-11.1.1.tgz",
+          "integrity": "sha1-h5oIZZc7yp9rq1y987HGfsfTvPQ=",
+          "dev": true,
+          "requires": {
+            "camelcase": "^5.0.0",
+            "decamelize": "^1.2.0"
+          }
+        }
+      }
+    },
+    "webpack-log": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npm.taobao.org/webpack-log/download/webpack-log-2.0.0.tgz?cache=0&sync_timestamp=1564684394562&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwebpack-log%2Fdownload%2Fwebpack-log-2.0.0.tgz",
+      "integrity": "sha1-W3ko4GN1k/EZ0y9iJ8HgrDHhtH8=",
+      "dev": true,
+      "requires": {
+        "ansi-colors": "^3.0.0",
+        "uuid": "^3.3.2"
+      }
+    },
+    "webpack-merge": {
+      "version": "4.2.2",
+      "resolved": "https://registry.npm.taobao.org/webpack-merge/download/webpack-merge-4.2.2.tgz",
+      "integrity": "sha1-onxS6ng9E5iv0gh/VH17nS9DY00=",
+      "dev": true,
+      "requires": {
+        "lodash": "^4.17.15"
+      }
+    },
+    "webpack-sources": {
+      "version": "1.4.3",
+      "resolved": "https://registry.npm.taobao.org/webpack-sources/download/webpack-sources-1.4.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwebpack-sources%2Fdownload%2Fwebpack-sources-1.4.3.tgz",
+      "integrity": "sha1-7t2OwLko+/HL/plOItLYkPMwqTM=",
+      "dev": true,
+      "requires": {
+        "source-list-map": "^2.0.0",
+        "source-map": "~0.6.1"
+      },
+      "dependencies": {
+        "source-map": {
+          "version": "0.6.1",
+          "resolved": "http://registry.npm.taobao.org/source-map/download/source-map-0.6.1.tgz",
+          "integrity": "sha1-dHIq8y6WFOnCh6jQu95IteLxomM=",
+          "dev": true
+        }
+      }
+    },
+    "websocket-driver": {
+      "version": "0.7.3",
+      "resolved": "https://registry.npm.taobao.org/websocket-driver/download/websocket-driver-0.7.3.tgz",
+      "integrity": "sha1-otTg1PTxFvHmKX66WLBdQwEA6fk=",
+      "dev": true,
+      "requires": {
+        "http-parser-js": ">=0.4.0 <0.4.11",
+        "safe-buffer": ">=5.1.0",
+        "websocket-extensions": ">=0.1.1"
+      }
+    },
+    "websocket-extensions": {
+      "version": "0.1.3",
+      "resolved": "http://registry.npm.taobao.org/websocket-extensions/download/websocket-extensions-0.1.3.tgz",
+      "integrity": "sha1-XS/yKXcAPsaHpLhwc9+7rBRszyk=",
+      "dev": true
+    },
+    "weixin-js-sdk": {
+      "version": "1.4.0-test",
+      "resolved": "https://registry.npm.taobao.org/weixin-js-sdk/download/weixin-js-sdk-1.4.0-test.tgz",
+      "integrity": "sha1-YSu6/Ml62E9a/m3IRwFTTMWfw8o="
+    },
+    "which": {
+      "version": "1.3.1",
+      "resolved": "http://registry.npm.taobao.org/which/download/which-1.3.1.tgz",
+      "integrity": "sha1-pFBD1U9YBTFtqNYvn1CRjT2nCwo=",
+      "dev": true,
+      "requires": {
+        "isexe": "^2.0.0"
+      }
+    },
+    "which-module": {
+      "version": "2.0.0",
+      "resolved": "http://registry.npm.taobao.org/which-module/download/which-module-2.0.0.tgz",
+      "integrity": "sha1-2e8H3Od7mQK4o6j6SzHD4/fm6Ho=",
+      "dev": true
+    },
+    "wordwrap": {
+      "version": "1.0.0",
+      "resolved": "http://registry.npm.taobao.org/wordwrap/download/wordwrap-1.0.0.tgz",
+      "integrity": "sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=",
+      "dev": true
+    },
+    "worker-farm": {
+      "version": "1.7.0",
+      "resolved": "https://registry.npm.taobao.org/worker-farm/download/worker-farm-1.7.0.tgz",
+      "integrity": "sha1-JqlMU5G7ypJhUgAvabhKS/dy5ag=",
+      "dev": true,
+      "requires": {
+        "errno": "~0.1.7"
+      }
+    },
+    "wrap-ansi": {
+      "version": "5.1.0",
+      "resolved": "https://registry.npm.taobao.org/wrap-ansi/download/wrap-ansi-5.1.0.tgz",
+      "integrity": "sha1-H9H2cjXVttD+54EFYAG/tpTAOwk=",
+      "dev": true,
+      "requires": {
+        "ansi-styles": "^3.2.0",
+        "string-width": "^3.0.0",
+        "strip-ansi": "^5.0.0"
+      },
+      "dependencies": {
+        "string-width": {
+          "version": "3.1.0",
+          "resolved": "http://registry.npm.taobao.org/string-width/download/string-width-3.1.0.tgz",
+          "integrity": "sha1-InZ74htirxCBV0MG9prFG2IgOWE=",
+          "dev": true,
+          "requires": {
+            "emoji-regex": "^7.0.1",
+            "is-fullwidth-code-point": "^2.0.0",
+            "strip-ansi": "^5.1.0"
+          }
+        }
+      }
+    },
+    "wrappy": {
+      "version": "1.0.2",
+      "resolved": "http://registry.npm.taobao.org/wrappy/download/wrappy-1.0.2.tgz",
+      "integrity": "sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=",
+      "dev": true
+    },
+    "write": {
+      "version": "0.2.1",
+      "resolved": "https://registry.npm.taobao.org/write/download/write-0.2.1.tgz",
+      "integrity": "sha1-X8A4KOJkzqP+kUVUdvejxWbLB1c=",
+      "dev": true,
+      "optional": true,
+      "requires": {
+        "mkdirp": "^0.5.1"
+      }
+    },
+    "ws": {
+      "version": "6.2.1",
+      "resolved": "https://registry.npm.taobao.org/ws/download/ws-6.2.1.tgz",
+      "integrity": "sha1-RC/fCkftZPWbal2P8TD0dI7VJPs=",
+      "dev": true,
+      "requires": {
+        "async-limiter": "~1.0.0"
+      }
+    },
+    "xtend": {
+      "version": "4.0.2",
+      "resolved": "https://registry.npm.taobao.org/xtend/download/xtend-4.0.2.tgz",
+      "integrity": "sha1-u3J3n1+kZRhrH0OPZ0+jR/2121Q=",
+      "dev": true
+    },
+    "y18n": {
+      "version": "4.0.0",
+      "resolved": "http://registry.npm.taobao.org/y18n/download/y18n-4.0.0.tgz",
+      "integrity": "sha1-le+U+F7MgdAHwmThkKEg8KPIVms=",
+      "dev": true
+    },
+    "yallist": {
+      "version": "3.0.3",
+      "resolved": "http://registry.npm.taobao.org/yallist/download/yallist-3.0.3.tgz",
+      "integrity": "sha1-tLBJ4xS+VF486AIjbWzSLNkcPek=",
+      "dev": true
+    },
+    "yargs": {
+      "version": "13.3.0",
+      "resolved": "https://registry.npm.taobao.org/yargs/download/yargs-13.3.0.tgz",
+      "integrity": "sha1-TGV6VeB+Xyz5R/ijZlZ8BKDe3IM=",
+      "dev": true,
+      "requires": {
+        "cliui": "^5.0.0",
+        "find-up": "^3.0.0",
+        "get-caller-file": "^2.0.1",
+        "require-directory": "^2.1.1",
+        "require-main-filename": "^2.0.0",
+        "set-blocking": "^2.0.0",
+        "string-width": "^3.0.0",
+        "which-module": "^2.0.0",
+        "y18n": "^4.0.0",
+        "yargs-parser": "^13.1.1"
+      },
+      "dependencies": {
+        "find-up": {
+          "version": "3.0.0",
+          "resolved": "https://registry.npm.taobao.org/find-up/download/find-up-3.0.0.tgz",
+          "integrity": "sha1-SRafHXmTQwZG2mHsxa41XCHJe3M=",
+          "dev": true,
+          "requires": {
+            "locate-path": "^3.0.0"
+          }
+        },
+        "locate-path": {
+          "version": "3.0.0",
+          "resolved": "https://registry.npm.taobao.org/locate-path/download/locate-path-3.0.0.tgz",
+          "integrity": "sha1-2+w7OrdZdYBxtY/ln8QYca8hQA4=",
+          "dev": true,
+          "requires": {
+            "p-locate": "^3.0.0",
+            "path-exists": "^3.0.0"
+          }
+        },
+        "p-limit": {
+          "version": "2.2.1",
+          "resolved": "https://registry.npm.taobao.org/p-limit/download/p-limit-2.2.1.tgz",
+          "integrity": "sha1-qgeniMwxUck5tRMfY1cPDdIAlTc=",
+          "dev": true,
+          "requires": {
+            "p-try": "^2.0.0"
+          }
+        },
+        "p-locate": {
+          "version": "3.0.0",
+          "resolved": "http://registry.npm.taobao.org/p-locate/download/p-locate-3.0.0.tgz",
+          "integrity": "sha1-Mi1poFwCZLJZl9n0DNiokasAZKQ=",
+          "dev": true,
+          "requires": {
+            "p-limit": "^2.0.0"
+          }
+        },
+        "p-try": {
+          "version": "2.2.0",
+          "resolved": "http://registry.npm.taobao.org/p-try/download/p-try-2.2.0.tgz",
+          "integrity": "sha1-yyhoVA4xPWHeWPr741zpAE1VQOY=",
+          "dev": true
+        },
+        "string-width": {
+          "version": "3.1.0",
+          "resolved": "http://registry.npm.taobao.org/string-width/download/string-width-3.1.0.tgz",
+          "integrity": "sha1-InZ74htirxCBV0MG9prFG2IgOWE=",
+          "dev": true,
+          "requires": {
+            "emoji-regex": "^7.0.1",
+            "is-fullwidth-code-point": "^2.0.0",
+            "strip-ansi": "^5.1.0"
+          }
+        }
+      }
+    },
+    "yargs-parser": {
+      "version": "13.1.1",
+      "resolved": "https://registry.npm.taobao.org/yargs-parser/download/yargs-parser-13.1.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyargs-parser%2Fdownload%2Fyargs-parser-13.1.1.tgz",
+      "integrity": "sha1-0mBYUyqgbTZf4JH2ofwGsvfl7KA=",
+      "dev": true,
+      "requires": {
+        "camelcase": "^5.0.0",
+        "decamelize": "^1.2.0"
+      }
+    },
+    "yorkie": {
+      "version": "2.0.0",
+      "resolved": "http://registry.npm.taobao.org/yorkie/download/yorkie-2.0.0.tgz",
+      "integrity": "sha1-kkEZEtQ1IU4SxRwq4Qk+VLa7g9k=",
+      "dev": true,
+      "requires": {
+        "execa": "^0.8.0",
+        "is-ci": "^1.0.10",
+        "normalize-path": "^1.0.0",
+        "strip-indent": "^2.0.0"
+      },
+      "dependencies": {
+        "cross-spawn": {
+          "version": "5.1.0",
+          "resolved": "https://registry.npm.taobao.org/cross-spawn/download/cross-spawn-5.1.0.tgz?cache=0&sync_timestamp=1567511270254&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcross-spawn%2Fdownload%2Fcross-spawn-5.1.0.tgz",
+          "integrity": "sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk=",
+          "dev": true,
+          "requires": {
+            "lru-cache": "^4.0.1",
+            "shebang-command": "^1.2.0",
+            "which": "^1.2.9"
+          }
+        },
+        "execa": {
+          "version": "0.8.0",
+          "resolved": "https://registry.npm.taobao.org/execa/download/execa-0.8.0.tgz",
+          "integrity": "sha1-2NdrvBtVIX7RkP1t1J08d07PyNo=",
+          "dev": true,
+          "requires": {
+            "cross-spawn": "^5.0.1",
+            "get-stream": "^3.0.0",
+            "is-stream": "^1.1.0",
+            "npm-run-path": "^2.0.0",
+            "p-finally": "^1.0.0",
+            "signal-exit": "^3.0.0",
+            "strip-eof": "^1.0.0"
+          }
+        },
+        "get-stream": {
+          "version": "3.0.0",
+          "resolved": "http://registry.npm.taobao.org/get-stream/download/get-stream-3.0.0.tgz",
+          "integrity": "sha1-jpQ9E1jcN1VQVOy+LtsFqhdO3hQ=",
+          "dev": true
+        },
+        "lru-cache": {
+          "version": "4.1.5",
+          "resolved": "http://registry.npm.taobao.org/lru-cache/download/lru-cache-4.1.5.tgz",
+          "integrity": "sha1-i75Q6oW+1ZvJ4z3KuCNe6bz0Q80=",
+          "dev": true,
+          "requires": {
+            "pseudomap": "^1.0.2",
+            "yallist": "^2.1.2"
+          }
+        },
+        "normalize-path": {
+          "version": "1.0.0",
+          "resolved": "http://registry.npm.taobao.org/normalize-path/download/normalize-path-1.0.0.tgz",
+          "integrity": "sha1-MtDkcvkf80VwHBWoMRAY07CpA3k=",
+          "dev": true
+        },
+        "yallist": {
+          "version": "2.1.2",
+          "resolved": "http://registry.npm.taobao.org/yallist/download/yallist-2.1.2.tgz",
+          "integrity": "sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=",
+          "dev": true
+        }
+      }
+    }
+  }
+}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         3\ua882-\ua8b3\ua8f2-\ua8f7\ua8fb\ua8fd\ua90a-\ua925\ua930-\ua946\ua960-\ua97c\ua984-\ua9b2\ua9e0-\ua9e4\ua9e7-\ua9ef\ua9fa-\ua9fe\uaa00-\uaa28\uaa40-\uaa42\uaa44-\uaa4b\uaa60-\uaa6f\uaa71-\uaa76\uaa7a\uaa7e-\uaaaf\uaab1\uaab5\uaab6\uaab9-\uaabd\uaac0\uaac2\uaadb\uaadc\uaae0-\uaaea\uaaf2\uab01-\uab06\uab09-\uab0e\uab11-\uab16\uab20-\uab26\uab28-\uab2e\uabc0-\uabe2\uac00-\ud7a3\ud7b0-\ud7c6\ud7cb-\ud7fb\uf900-\ufa6d\ufa70-\ufad9\ufb1d\ufb1f-\ufb28\ufb2a-\ufb36\ufb38-\ufb3c\ufb3e\ufb40\ufb41\ufb43\ufb44\ufb46-\ufbb1\ufbd3-\ufd3d\ufd50-\ufd8f\ufd92-\ufdc7\ufdf0-\ufdfb\ufe70-\ufe74\ufe76-\ufefc\uff66-\uff6f\uff71-\uff9d\uffa0-\uffbe\uffc2-\uffc7\uffca-\uffcf\uffd2-\uffd7\uffda-\uffdc",
+          astral:
+            "\ud86e[\udc00-\udc1d\udc20-\udfff]|\ud86d[\udc00-\udf34\udf40-\udfff]|\ud869[\udc00-\uded6\udf00-\udfff]|\ud83a[\udc00-\udcc4]|\ud803[\udc00-\udc48]|\ud800[\udc00-\udc0b\udc0d-\udc26\udc28-\udc3a\udc3c\udc3d\udc3f-\udc4d\udc50-\udc5d\udc80-\udcfa\ude80-\ude9c\udea0-\uded0\udf00-\udf1f\udf30-\udf40\udf42-\udf49\udf50-\udf75\udf80-\udf9d\udfa0-\udfc3\udfc8-\udfcf]|\ud80d[\udc00-\udc2e]|\ud87e[\udc00-\ude1d]|\ud81b[\udf00-\udf44\udf50]|[\ud80c\ud840-\ud868\ud86a-\ud86c\ud86f-\ud872][\udc00-\udfff]|\ud805[\udc80-\udcaf\udcc4\udcc5\udcc7\udd80-\uddae\uddd8-\udddb\ude00-\ude2f\ude44\ude80-\udeaa\udf00-\udf19]|\ud806[\udcff\udec0-\udef8]|\ud809[\udc80-\udd43]|\ud802[\udc00-\udc05\udc08\udc0a-\udc35\udc37\udc38\udc3c\udc3f-\udc55\udc60-\udc76\udc80-\udc9e\udce0-\udcf2\udcf4\udcf5\udd00-\udd15\udd20-\udd39\udd80-\uddb7\uddbe\uddbf\ude00\ude10-\ude13\ude15-\ude17\ude19-\ude33\ude60-\ude7c\ude80-\ude9c\udec0-\udec7\udec9-\udee4\udf00-\udf35\udf40-\udf55\udf60-\udf72\udf80-\udf91]|\ud804[\udc03-\udc37\udc83-\udcaf\udcd0-\udce8\udd03-\udd26\udd50-\udd72\udd76\udd83-\uddb2\uddc1-\uddc4\uddda\udddc\ude00-\ude11\ude13-\ude2b\ude80-\ude86\ude88\ude8a-\ude8d\ude8f-\ude9d\ude9f-\udea8\udeb0-\udede\udf05-\udf0c\udf0f\udf10\udf13-\udf28\udf2a-\udf30\udf32\udf33\udf35-\udf39\udf3d\udf50\udf5d-\udf61]|\ud808[\udc00-\udf99]|\ud83b[\ude00-\ude03\ude05-\ude1f\ude21\ude22\ude24\ude27\ude29-\ude32\ude34-\ude37\ude39\ude3b\ude42\ude47\ude49\ude4b\ude4d-\ude4f\ude51\ude52\ude54\ude57\ude59\ude5b\ude5d\ude5f\ude61\ude62\ude64\ude67-\ude6a\ude6c-\ude72\ude74-\ude77\ude79-\ude7c\ude7e\ude80-\ude89\ude8b-\ude9b\udea1-\udea3\udea5-\udea9\udeab-\udebb]|\ud81a[\udc00-\ude38\ude40-\ude5e\uded0-\udeed\udf00-\udf2f\udf63-\udf77\udf7d-\udf8f]|\ud801[\udc50-\udc9d\udd00-\udd27\udd30-\udd63\ude00-\udf36\udf40-\udf55\udf60-\udf67]|\ud811[\udc00-\ude46]|\ud82f[\udc00-\udc6a\udc70-\udc7c\udc80-\udc88\udc90-\udc99]|\ud82c[\udc00\udc01]|\ud873[\udc00-\udea1]"
+        },
+        {
+          name: "Lt",
+          alias: "Titlecase_Letter",
+          bmp:
+            "\u01c5\u01c8\u01cb\u01f2\u1f88-\u1f8f\u1f98-\u1f9f\u1fa8-\u1faf\u1fbc\u1fcc\u1ffc"
+        },
+        {
+          name: "Lu",
+          alias: "Uppercase_Letter",
+          bmp:
+            "A-Z\xc0-\xd6\xd8-\xde\u0100\u0102\u0104\u0106\u0108\u010a\u010c\u010e\u0110\u0112\u0114\u0116\u0118\u011a\u011c\u011e\u0120\u0122\u0124\u0126\u0128\u012a\u012c\u012e\u0130\u0132\u0134\u0136\u0139\u013b\u013d\u013f\u0141\u0143\u0145\u0147\u014a\u014c\u014e\u0150\u0152\u0154\u0156\u0158\u015a\u015c\u015e\u0160\u0162\u0164\u0166\u0168\u016a\u016c\u016e\u0170\u0172\u0174\u0176\u0178\u0179\u017b\u017d\u0181\u0182\u0184\u0186\u0187\u0189-\u018b\u018e-\u0191\u0193\u0194\u0196-\u0198\u019c\u019d\u019f\u01a0\u01a2\u01a4\u01a6\u01a7\u01a9\u01ac\u01ae\u01af\u01b1-\u01b3\u01b5\u01b7\u01b8\u01bc\u01c4\u01c7\u01ca\u01cd\u01cf\u01d1\u01d3\u01d5\u01d7\u01d9\u01db\u01de\u01e0\u01e2\u01e4\u01e6\u01e8\u01ea\u01ec\u01ee\u01f1\u01f4\u01f6-\u01f8\u01fa\u01fc\u01fe\u0200\u0202\u0204\u0206\u0208\u020a\u020c\u020e\u0210\u0212\u0214\u0216\u0218\u021a\u021c\u021e\u0220\u0222\u0224\u0226\u0228\u022a\u022c\u022e\u0230\u0232\u023a\u023b\u023d\u023e\u0241\u0243-\u0246\u0248\u024a\u024c\u024e\u0370\u0372\u0376\u037f\u0386\u0388-\u038a\u038c\u038e\u038f\u0391-\u03a1\u03a3-\u03ab\u03cf\u03d2-\u03d4\u03d8\u03da\u03dc\u03de\u03e0\u03e2\u03e4\u03e6\u03e8\u03ea\u03ec\u03ee\u03f4\u03f7\u03f9\u03fa\u03fd-\u042f\u0460\u0462\u0464\u0466\u0468\u046a\u046c\u046e\u0470\u0472\u0474\u0476\u0478\u047a\u047c\u047e\u0480\u048a\u048c\u048e\u0490\u0492\u0494\u0496\u0498\u049a\u049c\u049e\u04a0\u04a2\u04a4\u04a6\u04a8\u04aa\u04ac\u04ae\u04b0\u04b2\u04b4\u04b6\u04b8\u04ba\u04bc\u04be\u04c0\u04c1\u04c3\u04c5\u04c7\u04c9\u04cb\u04cd\u04d0\u04d2\u04d4\u04d6\u04d8\u04da\u04dc\u04de\u04e0\u04e2\u04e4\u04e6\u04e8\u04ea\u04ec\u04ee\u04f0\u04f2\u04f4\u04f6\u04f8\u04fa\u04fc\u04fe\u0500\u0502\u0504\u0506\u0508\u050a\u050c\u050e\u0510\u0512\u0514\u0516\u0518\u051a\u051c\u051e\u0520\u0522\u0524\u0526\u0528\u052a\u052c\u052e\u0531-\u0556\u10a0-\u10c5\u10c7\u10cd\u13a0-\u13f5\u1e00\u1e02\u1e04\u1e06\u1e08\u1e0a\u1e0c\u1e0e\u1e10\u1e12\u1e14\u1e16\u1e18\u1e1a\u1e1c\u1e1e\u1e20\u1e22\u1e24\u1e26\u1e28\u1e2a\u1e2c\u1e2e\u1e30\u1e32\u1e34\u1e36\u1e38\u1e3a\u1e3c\u1e3e\u1e40\u1e42\u1e44\u1e46\u1e48\u1e4a\u1e4c\u1e4e\u1e50\u1e52\u1e54\u1e56\u1e58\u1e5a\u1e5c\u1e5e\u1e60\u1e62\u1e64\u1e66\u1e68\u1e6a\u1e6c\u1e6e\u1e70\u1e72\u1e74\u1e76\u1e78\u1e7a\u1e7c\u1e7e\u1e80\u1e82\u1e84\u1e86\u1e88\u1e8a\u1e8c\u1e8e\u1e90\u1e92\u1e94\u1e9e\u1ea0\u1ea2\u1ea4\u1ea6\u1ea8\u1eaa\u1eac\u1eae\u1eb0\u1eb2\u1eb4\u1eb6\u1eb8\u1eba\u1ebc\u1ebe\u1ec0\u1ec2\u1ec4\u1ec6\u1ec8\u1eca\u1ecc\u1ece\u1ed0\u1ed2\u1ed4\u1ed6\u1ed8\u1eda\u1edc\u1ede\u1ee0\u1ee2\u1ee4\u1ee6\u1ee8\u1eea\u1eec\u1eee\u1ef0\u1ef2\u1ef4\u1ef6\u1ef8\u1efa\u1efc\u1efe\u1f08-\u1f0f\u1f18-\u1f1d\u1f28-\u1f2f\u1f38-\u1f3f\u1f48-\u1f4d\u1f59\u1f5b\u1f5d\u1f5f\u1f68-\u1f6f\u1fb8-\u1fbb\u1fc8-\u1fcb\u1fd8-\u1fdb\u1fe8-\u1fec\u1ff8-\u1ffb\u2102\u2107\u210b-\u210d\u2110-\u2112\u2115\u2119-\u211d\u2124\u2126\u2128\u212a-\u212d\u2130-\u2133\u213e\u213f\u2145\u2183\u2c00-\u2c2e\u2c60\u2c62-\u2c64\u2c67\u2c69\u2c6b\u2c6d-\u2c70\u2c72\u2c75\u2c7e-\u2c80\u2c82\u2c84\u2c86\u2c88\u2c8a\u2c8c\u2c8e\u2c90\u2c92\u2c94\u2c96\u2c98\u2c9a\u2c9c\u2c9e\u2ca0\u2ca2\u2ca4\u2ca6\u2ca8\u2caa\u2cac\u2cae\u2cb0\u2cb2\u2cb4\u2cb6\u2cb8\u2cba\u2cbc\u2cbe\u2cc0\u2cc2\u2cc4\u2cc6\u2cc8\u2cca\u2ccc\u2cce\u2cd0\u2cd2\u2cd4\u2cd6\u2cd8\u2cda\u2cdc\u2cde\u2ce0\u2ce2\u2ceb\u2ced\u2cf2\ua640\ua642\ua644\ua646\ua648\ua64a\ua64c\ua64e\ua650\ua652\ua654\ua656\ua658\ua65a\ua65c\ua65e\ua660\ua662\ua664\ua666\ua668\ua66a\ua66c\ua680\ua682\ua684\ua686\ua688\ua68a\ua68c\ua68e\ua690\ua692\ua694\ua696\ua698\ua69a\ua722\ua724\ua726\ua728\ua72a\ua72c\ua72e\ua732\ua734\ua736\ua738\ua73a\ua73c\ua73e\ua740\ua742\ua744\ua746\ua748\ua74a\ua74c\ua74e\ua750\ua752\ua754\ua756\ua758\ua75a\ua75c\ua75e\ua760\ua762\ua764\ua766\ua768\ua76a\ua76c\ua76e\ua779\ua77b\ua77d\ua77e\ua780\ua782\ua784\ua786\ua78b\ua78d\ua790\ua792\ua796\ua798\ua79a\ua79c\ua79e\ua7a0\ua7a2\ua7a4\ua7a6\ua7a8\ua7aa-\ua7ad\ua7b0-\ua7b4\ua7b6\uff21-\uff3a",
+          astral:
+            "\ud806[\udca0-\udcbf]|\ud803[\udc80-\udcb2]|\ud801[\udc00-\udc27]|\ud835[\udc00-\udc19\udc34-\udc4d\udc68-\udc81\udc9c\udc9e\udc9f\udca2\udca5\udca6\udca9-\udcac\udcae-\udcb5\udcd0-\udce9\udd04\udd05\udd07-\udd0a\udd0d-\udd14\udd16-\udd1c\udd38\udd39\udd3b-\udd3e\udd40-\udd44\udd46\udd4a-\udd50\udd6c-\udd85\udda0-\uddb9\uddd4-\udded\ude08-\ude21\ude3c-\ude55\ude70-\ude89\udea8-\udec0\udee2-\udefa\udf1c-\udf34\udf56-\udf6e\udf90-\udfa8\udfca]"
+        },
+        {
+          name: "M",
+          alias: "Mark",
+          bmp:
+            "\u0300-\u036f\u0483-\u0489\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06dc\u06df-\u06e4\u06e7\u06e8\u06ea-\u06ed\u0711\u0730-\u074a\u07a6-\u07b0\u07eb-\u07f3\u0816-\u0819\u081b-\u0823\u0825-\u0827\u0829-\u082d\u0859-\u085b\u08e3-\u0903\u093a-\u093c\u093e-\u094f\u0951-\u0957\u0962\u0963\u0981-\u0983\u09bc\u09be-\u09c4\u09c7\u09c8\u09cb-\u09cd\u09d7\u09e2\u09e3\u0a01-\u0a03\u0a3c\u0a3e-\u0a42\u0a47\u0a48\u0a4b-\u0a4d\u0a51\u0a70\u0a71\u0a75\u0a81-\u0a83\u0abc\u0abe-\u0ac5\u0ac7-\u0ac9\u0acb-\u0acd\u0ae2\u0ae3\u0b01-\u0b03\u0b3c\u0b3e-\u0b44\u0b47\u0b48\u0b4b-\u0b4d\u0b56\u0b57\u0b62\u0b63\u0b82\u0bbe-\u0bc2\u0bc6-\u0bc8\u0bca-\u0bcd\u0bd7\u0c00-\u0c03\u0c3e-\u0c44\u0c46-\u0c48\u0c4a-\u0c4d\u0c55\u0c56\u0c62\u0c63\u0c81-\u0c83\u0cbc\u0cbe-\u0cc4\u0cc6-\u0cc8\u0cca-\u0ccd\u0cd5\u0cd6\u0ce2\u0ce3\u0d01-\u0d03\u0d3e-\u0d44\u0d46-\u0d48\u0d4a-\u0d4d\u0d57\u0d62\u0d63\u0d82\u0d83\u0dca\u0dcf-\u0dd4\u0dd6\u0dd8-\u0ddf\u0df2\u0df3\u0e31\u0e34-\u0e3a\u0e47-\u0e4e\u0eb1\u0eb4-\u0eb9\u0ebb\u0ebc\u0ec8-\u0ecd\u0f18\u0f19\u0f35\u0f37\u0f39\u0f3e\u0f3f\u0f71-\u0f84\u0f86\u0f87\u0f8d-\u0f97\u0f99-\u0fbc\u0fc6\u102b-\u103e\u1056-\u1059\u105e-\u1060\u1062-\u1064\u1067-\u106d\u1071-\u1074\u1082-\u108d\u108f\u109a-\u109d\u135d-\u135f\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17b4-\u17d3\u17dd\u180b-\u180d\u18a9\u1920-\u192b\u1930-\u193b\u1a17-\u1a1b\u1a55-\u1a5e\u1a60-\u1a7c\u1a7f\u1ab0-\u1abe\u1b00-\u1b04\u1b34-\u1b44\u1b6b-\u1b73\u1b80-\u1b82\u1ba1-\u1bad\u1be6-\u1bf3\u1c24-\u1c37\u1cd0-\u1cd2\u1cd4-\u1ce8\u1ced\u1cf2-\u1cf4\u1cf8\u1cf9\u1dc0-\u1df5\u1dfc-\u1dff\u20d0-\u20f0\u2cef-\u2cf1\u2d7f\u2de0-\u2dff\u302a-\u302f\u3099\u309a\ua66f-\ua672\ua674-\ua67d\ua69e\ua69f\ua6f0\ua6f1\ua802\ua806\ua80b\ua823-\ua827\ua880\ua881\ua8b4-\ua8c4\ua8e0-\ua8f1\ua926-\ua92d\ua947-\ua953\ua980-\ua983\ua9b3-\ua9c0\ua9e5\uaa29-\uaa36\uaa43\uaa4c\uaa4d\uaa7b-\uaa7d\uaab0\uaab2-\uaab4\uaab7\uaab8\uaabe\uaabf\uaac1\uaaeb-\uaaef\uaaf5\uaaf6\uabe3-\uabea\uabec\uabed\ufb1e\ufe00-\ufe0f\ufe20-\ufe2f",
+          astral:
+            "\ud805[\udcb0-\udcc3\uddaf-\uddb5\uddb8-\uddc0\udddc\udddd\ude30-\ude40\udeab-\udeb7\udf1d-\udf2b]|\ud834[\udd65-\udd69\udd6d-\udd72\udd7b-\udd82\udd85-\udd8b\uddaa-\uddad\ude42-\ude44]|\ud804[\udc00-\udc02\udc38-\udc46\udc7f-\udc82\udcb0-\udcba\udd00-\udd02\udd27-\udd34\udd73\udd80-\udd82\uddb3-\uddc0\uddca-\uddcc\ude2c-\ude37\udedf-\udeea\udf00-\udf03\udf3c\udf3e-\udf44\udf47\udf48\udf4b-\udf4d\udf57\udf62\udf63\udf66-\udf6c\udf70-\udf74]|\ud81b[\udf51-\udf7e\udf8f-\udf92]|\ud81a[\udef0-\udef4\udf30-\udf36]|\ud82f[\udc9d\udc9e]|\ud800[\uddfd\udee0\udf76-\udf7a]|\ud836[\ude00-\ude36\ude3b-\ude6c\ude75\ude84\ude9b-\ude9f\udea1-\udeaf]|\ud802[\ude01-\ude03\ude05\ude06\ude0c-\ude0f\ude38-\ude3a\ude3f\udee5\udee6]|\ud83a[\udcd0-\udcd6]|\udb40[\udd00-\uddef]"
+        },
+        {
+          name: "Mc",
+          alias: "Spacing_Mark",
+          bmp:
+            "\u0903\u093b\u093e-\u0940\u0949-\u094c\u094e\u094f\u0982\u0983\u09be-\u09c0\u09c7\u09c8\u09cb\u09cc\u09d7\u0a03\u0a3e-\u0a40\u0a83\u0abe-\u0ac0\u0ac9\u0acb\u0acc\u0b02\u0b03\u0b3e\u0b40\u0b47\u0b48\u0b4b\u0b4c\u0b57\u0bbe\u0bbf\u0bc1\u0bc2\u0bc6-\u0bc8\u0bca-\u0bcc\u0bd7\u0c01-\u0c03\u0c41-\u0c44\u0c82\u0c83\u0cbe\u0cc0-\u0cc4\u0cc7\u0cc8\u0cca\u0ccb\u0cd5\u0cd6\u0d02\u0d03\u0d3e-\u0d40\u0d46-\u0d48\u0d4a-\u0d4c\u0d57\u0d82\u0d83\u0dcf-\u0dd1\u0dd8-\u0ddf\u0df2\u0df3\u0f3e\u0f3f\u0f7f\u102b\u102c\u1031\u1038\u103b\u103c\u1056\u1057\u1062-\u1064\u1067-\u106d\u1083\u1084\u1087-\u108c\u108f\u109a-\u109c\u17b6\u17be-\u17c5\u17c7\u17c8\u1923-\u1926\u1929-\u192b\u1930\u1931\u1933-\u1938\u1a19\u1a1a\u1a55\u1a57\u1a61\u1a63\u1a64\u1a6d-\u1a72\u1b04\u1b35\u1b3b\u1b3d-\u1b41\u1b43\u1b44\u1b82\u1ba1\u1ba6\u1ba7\u1baa\u1be7\u1bea-\u1bec\u1bee\u1bf2\u1bf3\u1c24-\u1c2b\u1c34\u1c35\u1ce1\u1cf2\u1cf3\u302e\u302f\ua823\ua824\ua827\ua880\ua881\ua8b4-\ua8c3\ua952\ua953\ua983\ua9b4\ua9b5\ua9ba\ua9bb\ua9bd-\ua9c0\uaa2f\uaa30\uaa33\uaa34\uaa4d\uaa7b\uaa7d\uaaeb\uaaee\uaaef\uaaf5\uabe3\uabe4\uabe6\uabe7\uabe9\uabea\uabec",
+          astral:
+            "\ud834[\udd65\udd66\udd6d-\udd72]|\ud804[\udc00\udc02\udc82\udcb0-\udcb2\udcb7\udcb8\udd2c\udd82\uddb3-\uddb5\uddbf\uddc0\ude2c-\ude2e\ude32\ude33\ude35\udee0-\udee2\udf02\udf03\udf3e\udf3f\udf41-\udf44\udf47\udf48\udf4b-\udf4d\udf57\udf62\udf63]|\ud805[\udcb0-\udcb2\udcb9\udcbb-\udcbe\udcc1\uddaf-\uddb1\uddb8-\uddbb\uddbe\ude30-\ude32\ude3b\ude3c\ude3e\udeac\udeae\udeaf\udeb6\udf20\udf21\udf26]|\ud81b[\udf51-\udf7e]"
+        },
+        {
+          name: "Me",
+          alias: "Enclosing_Mark",
+          bmp: "\u0488\u0489\u1abe\u20dd-\u20e0\u20e2-\u20e4\ua670-\ua672"
+        },
+        {
+          name: "Mn",
+          alias: "Nonspacing_Mark",
+          bmp:
+            "\u0300-\u036f\u0483-\u0487\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06dc\u06df-\u06e4\u06e7\u06e8\u06ea-\u06ed\u0711\u0730-\u074a\u07a6-\u07b0\u07eb-\u07f3\u0816-\u0819\u081b-\u0823\u0825-\u0827\u0829-\u082d\u0859-\u085b\u08e3-\u0902\u093a\u093c\u0941-\u0948\u094d\u0951-\u0957\u0962\u0963\u0981\u09bc\u09c1-\u09c4\u09cd\u09e2\u09e3\u0a01\u0a02\u0a3c\u0a41\u0a42\u0a47\u0a48\u0a4b-\u0a4d\u0a51\u0a70\u0a71\u0a75\u0a81\u0a82\u0abc\u0ac1-\u0ac5\u0ac7\u0ac8\u0acd\u0ae2\u0ae3\u0b01\u0b3c\u0b3f\u0b41-\u0b44\u0b4d\u0b56\u0b62\u0b63\u0b82\u0bc0\u0bcd\u0c00\u0c3e-\u0c40\u0c46-\u0c48\u0c4a-\u0c4d\u0c55\u0c56\u0c62\u0c63\u0c81\u0cbc\u0cbf\u0cc6\u0ccc\u0ccd\u0ce2\u0ce3\u0d01\u0d41-\u0d44\u0d4d\u0d62\u0d63\u0dca\u0dd2-\u0dd4\u0dd6\u0e31\u0e34-\u0e3a\u0e47-\u0e4e\u0eb1\u0eb4-\u0eb9\u0ebb\u0ebc\u0ec8-\u0ecd\u0f18\u0f19\u0f35\u0f37\u0f39\u0f71-\u0f7e\u0f80-\u0f84\u0f86\u0f87\u0f8d-\u0f97\u0f99-\u0fbc\u0fc6\u102d-\u1030\u1032-\u1037\u1039\u103a\u103d\u103e\u1058\u1059\u105e-\u1060\u1071-\u1074\u1082\u1085\u1086\u108d\u109d\u135d-\u135f\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17b4\u17b5\u17b7-\u17bd\u17c6\u17c9-\u17d3\u17dd\u180b-\u180d\u18a9\u1920-\u1922\u1927\u1928\u1932\u1939-\u193b\u1a17\u1a18\u1a1b\u1a56\u1a58-\u1a5e\u1a60\u1a62\u1a65-\u1a6c\u1a73-\u1a7c\u1a7f\u1ab0-\u1abd\u1b00-\u1b03\u1b34\u1b36-\u1b3a\u1b3c\u1b42\u1b6b-\u1b73\u1b80\u1b81\u1ba2-\u1ba5\u1ba8\u1ba9\u1bab-\u1bad\u1be6\u1be8\u1be9\u1bed\u1bef-\u1bf1\u1c2c-\u1c33\u1c36\u1c37\u1cd0-\u1cd2\u1cd4-\u1ce0\u1ce2-\u1ce8\u1ced\u1cf4\u1cf8\u1cf9\u1dc0-\u1df5\u1dfc-\u1dff\u20d0-\u20dc\u20e1\u20e5-\u20f0\u2cef-\u2cf1\u2d7f\u2de0-\u2dff\u302a-\u302d\u3099\u309a\ua66f\ua674-\ua67d\ua69e\ua69f\ua6f0\ua6f1\ua802\ua806\ua80b\ua825\ua826\ua8c4\ua8e0-\ua8f1\ua926-\ua92d\ua947-\ua951\ua980-\ua982\ua9b3\ua9b6-\ua9b9\ua9bc\ua9e5\uaa29-\uaa2e\uaa31\uaa32\uaa35\uaa36\uaa43\uaa4c\uaa7c\uaab0\uaab2-\uaab4\uaab7\uaab8\uaabe\uaabf\uaac1\uaaec\uaaed\uaaf6\uabe5\uabe8\uabed\ufb1e\ufe00-\ufe0f\ufe20-\ufe2f",
+          astral:
+            "\ud805[\udcb3-\udcb8\udcba\udcbf\udcc0\udcc2\udcc3\uddb2-\uddb5\uddbc\uddbd\uddbf\uddc0\udddc\udddd\ude33-\ude3a\ude3d\ude3f\ude40\udeab\udead\udeb0-\udeb5\udeb7\udf1d-\udf1f\udf22-\udf25\udf27-\udf2b]|\ud834[\udd67-\udd69\udd7b-\udd82\udd85-\udd8b\uddaa-\uddad\ude42-\ude44]|\ud81a[\udef0-\udef4\udf30-\udf36]|\ud81b[\udf8f-\udf92]|\ud82f[\udc9d\udc9e]|\ud800[\uddfd\udee0\udf76-\udf7a]|\ud836[\ude00-\ude36\ude3b-\ude6c\ude75\ude84\ude9b-\ude9f\udea1-\udeaf]|\ud802[\ude01-\ude03\ude05\ude06\ude0c-\ude0f\ude38-\ude3a\ude3f\udee5\udee6]|\ud804[\udc01\udc38-\udc46\udc7f-\udc81\udcb3-\udcb6\udcb9\udcba\udd00-\udd02\udd27-\udd2b\udd2d-\udd34\udd73\udd80\udd81\uddb6-\uddbe\uddca-\uddcc\ude2f-\ude31\ude34\ude36\ude37\udedf\udee3-\udeea\udf00\udf01\udf3c\udf40\udf66-\udf6c\udf70-\udf74]|\ud83a[\udcd0-\udcd6]|\udb40[\udd00-\uddef]"
+        },
+        {
+          name: "N",
+          alias: "Number",
+          bmp:
+            "0-9\xb2\xb3\xb9\xbc-\xbe\u0660-\u0669\u06f0-\u06f9\u07c0-\u07c9\u0966-\u096f\u09e6-\u09ef\u09f4-\u09f9\u0a66-\u0a6f\u0ae6-\u0aef\u0b66-\u0b6f\u0b72-\u0b77\u0be6-\u0bf2\u0c66-\u0c6f\u0c78-\u0c7e\u0ce6-\u0cef\u0d66-\u0d75\u0de6-\u0def\u0e50-\u0e59\u0ed0-\u0ed9\u0f20-\u0f33\u1040-\u1049\u1090-\u1099\u1369-\u137c\u16ee-\u16f0\u17e0-\u17e9\u17f0-\u17f9\u1810-\u1819\u1946-\u194f\u19d0-\u19da\u1a80-\u1a89\u1a90-\u1a99\u1b50-\u1b59\u1bb0-\u1bb9\u1c40-\u1c49\u1c50-\u1c59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249b\u24ea-\u24ff\u2776-\u2793\u2cfd\u3007\u3021-\u3029\u3038-\u303a\u3192-\u3195\u3220-\u3229\u3248-\u324f\u3251-\u325f\u3280-\u3289\u32b1-\u32bf\ua620-\ua629\ua6e6-\ua6ef\ua830-\ua835\ua8d0-\ua8d9\ua900-\ua909\ua9d0-\ua9d9\ua9f0-\ua9f9\uaa50-\uaa59\uabf0-\uabf9\uff10-\uff19",
+          astral:
+            "\ud800[\udd07-\udd33\udd40-\udd78\udd8a\udd8b\udee1-\udefb\udf20-\udf23\udf41\udf4a\udfd1-\udfd5]|\ud801[\udca0-\udca9]|\ud803[\udcfa-\udcff\ude60-\ude7e]|\ud835[\udfce-\udfff]|\ud83a[\udcc7-\udccf]|\ud81a[\ude60-\ude69\udf50-\udf59\udf5b-\udf61]|\ud806[\udce0-\udcf2]|\ud804[\udc52-\udc6f\udcf0-\udcf9\udd36-\udd3f\uddd0-\uddd9\udde1-\uddf4\udef0-\udef9]|\ud834[\udf60-\udf71]|\ud83c[\udd00-\udd0c]|\ud809[\udc00-\udc6e]|\ud802[\udc58-\udc5f\udc79-\udc7f\udca7-\udcaf\udcfb-\udcff\udd16-\udd1b\uddbc\uddbd\uddc0-\uddcf\uddd2-\uddff\ude40-\ude47\ude7d\ude7e\ude9d-\ude9f\udeeb-\udeef\udf58-\udf5f\udf78-\udf7f\udfa9-\udfaf]|\ud805[\udcd0-\udcd9\ude50-\ude59\udec0-\udec9\udf30-\udf3b]"
+        },
+        {
+          name: "Nd",
+          alias: "Decimal_Number",
+          bmp:
+            "0-9\u0660-\u0669\u06f0-\u06f9\u07c0-\u07c9\u0966-\u096f\u09e6-\u09ef\u0a66-\u0a6f\u0ae6-\u0aef\u0b66-\u0b6f\u0be6-\u0bef\u0c66-\u0c6f\u0ce6-\u0cef\u0d66-\u0d6f\u0de6-\u0def\u0e50-\u0e59\u0ed0-\u0ed9\u0f20-\u0f29\u1040-\u1049\u1090-\u1099\u17e0-\u17e9\u1810-\u1819\u1946-\u194f\u19d0-\u19d9\u1a80-\u1a89\u1a90-\u1a99\u1b50-\u1b59\u1bb0-\u1bb9\u1c40-\u1c49\u1c50-\u1c59\ua620-\ua629\ua8d0-\ua8d9\ua900-\ua909\ua9d0-\ua9d9\ua9f0-\ua9f9\uaa50-\uaa59\uabf0-\uabf9\uff10-\uff19",
+          astral:
+            "\ud801[\udca0-\udca9]|\ud835[\udfce-\udfff]|\ud805[\udcd0-\udcd9\ude50-\ude59\udec0-\udec9\udf30-\udf39]|\ud806[\udce0-\udce9]|\ud804[\udc66-\udc6f\udcf0-\udcf9\udd36-\udd3f\uddd0-\uddd9\udef0-\udef9]|\ud81a[\ude60-\ude69\udf50-\udf59]"
+        },
+        {
+          name: "Nl",
+          alias: "Letter_Number",
+          bmp:
+            "\u16ee-\u16f0\u2160-\u2182\u2185-\u2188\u3007\u3021-\u3029\u3038-\u303a\ua6e6-\ua6ef",
+          astral:
+            "\ud809[\udc00-\udc6e]|\ud800[\udd40-\udd74\udf41\udf4a\udfd1-\udfd5]"
+        },
+        {
+          name: "No",
+          alias: "Other_Number",
+          bmp:
+            "\xb2\xb3\xb9\xbc-\xbe\u09f4-\u09f9\u0b72-\u0b77\u0bf0-\u0bf2\u0c78-\u0c7e\u0d70-\u0d75\u0f2a-\u0f33\u1369-\u137c\u17f0-\u17f9\u19da\u2070\u2074-\u2079\u2080-\u2089\u2150-\u215f\u2189\u2460-\u249b\u24ea-\u24ff\u2776-\u2793\u2cfd\u3192-\u3195\u3220-\u3229\u3248-\u324f\u3251-\u325f\u3280-\u3289\u32b1-\u32bf\ua830-\ua835",
+          astral:
+            "\ud804[\udc52-\udc65\udde1-\uddf4]|\ud803[\udcfa-\udcff\ude60-\ude7e]|\ud83c[\udd00-\udd0c]|\ud806[\udcea-\udcf2]|\ud83a[\udcc7-\udccf]|\ud802[\udc58-\udc5f\udc79-\udc7f\udca7-\udcaf\udcfb-\udcff\udd16-\udd1b\uddbc\uddbd\uddc0-\uddcf\uddd2-\uddff\ude40-\ude47\ude7d\ude7e\ude9d-\ude9f\udeeb-\udeef\udf58-\udf5f\udf78-\udf7f\udfa9-\udfaf]|\ud805[\udf3a\udf3b]|\ud81a[\udf5b-\udf61]|\ud834[\udf60-\udf71]|\ud800[\udd07-\udd33\udd75-\udd78\udd8a\udd8b\udee1-\udefb\udf20-\udf23]"
+        },
+        {
+          name: "P",
+          alias: "Punctuation",
+          bmp:
+            "!-#%-\\x2A,-/:;\\x3F@\\x5B-\\x5D_\\x7B}\xa1\xa7\xab\xb6\xb7\xbb\xbf\u037e\u0387\u055a-\u055f\u0589\u058a\u05be\u05c0\u05c3\u05c6\u05f3\u05f4\u0609\u060a\u060c\u060d\u061b\u061e\u061f\u066a-\u066d\u06d4\u0700-\u070d\u07f7-\u07f9\u0830-\u083e\u085e\u0964\u0965\u0970\u0af0\u0df4\u0e4f\u0e5a\u0e5b\u0f04-\u0f12\u0f14\u0f3a-\u0f3d\u0f85\u0fd0-\u0fd4\u0fd9\u0fda\u104a-\u104f\u10fb\u1360-\u1368\u1400\u166d\u166e\u169b\u169c\u16eb-\u16ed\u1735\u1736\u17d4-\u17d6\u17d8-\u17da\u1800-\u180a\u1944\u1945\u1a1e\u1a1f\u1aa0-\u1aa6\u1aa8-\u1aad\u1b5a-\u1b60\u1bfc-\u1b

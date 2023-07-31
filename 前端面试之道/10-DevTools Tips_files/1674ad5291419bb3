@@ -1,0 +1,528 @@
+
+		};
+
+		function tryReconnect() {
+			if (reconnectTimeout) {
+				clearTimeout(reconnectTimeout);
+			}
+			attemptCount++;
+			reconnectTimeout = setTimeout(function () {
+				delete docsCoApi.sockjs;
+				docsCoApi.sockjs = initSocksJs(url, docsCoApi);
+			}, 500 * attemptCount);
+
+		}
+
+		return sockjs;
+	}
+
+	SpellCheckApi.prototype.init = function (docid) {
+		this._docid = docid;
+		var re = /^https?:\/\//;
+		var spellcheckUrl = this._url + '/doc/' + docid + '/c';
+
+		if (re.test(this._url)) {
+			this.sockjs_url = spellcheckUrl;
+		} else {
+			this.sockjs_url = AscCommon.getBaseUrl() + "../../../.." + spellcheckUrl;
+		}
+
+		//Begin send auth
+		this.sockjs = initSocksJs(this.sockjs_url, this);
+	};
+
+	//-----------------------------------------------------------export---------------------------------------------------
+	window['AscCommon'] = window['AscCommon'] || {};
+	window["AscCommon"].CSpellCheckApi = CSpellCheckApi;
+})(window);
+
+
+/*
+ * (c) Copyright Ascensio System SIA 2010-2018
+ *
+ * This program is a free software product. You can redistribute it and/or
+ * modify it under the terms of the GNU Affero General Public License (AGPL)
+ * version 3 as published by the Free Software Foundation. In accordance with
+ * Section 7(a) of the GNU AGPL its Section 15 shall be amended to the effect
+ * that Ascensio System SIA expressly excludes the warranty of non-infringement
+ * of any third-party rights.
+ *
+ * This program is distributed WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR  PURPOSE. For
+ * details, see the GNU AGPL at: http://www.gnu.org/licenses/agpl-3.0.html
+ *
+ * You can contact Ascensio System SIA at Lubanas st. 125a-25, Riga, Latvia,
+ * EU, LV-1021.
+ *
+ * The  interactive user interfaces in modified source and object code versions
+ * of the Program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU AGPL version 3.
+ *
+ * Pursuant to Section 7(b) of the License you must retain the original Product
+ * logo when distributing the program. Pursuant to Section 7(e) we decline to
+ * grant you any rights under trademark law for use of our trademarks.
+ *
+ * All the Product's GUI elements, including illustrations and icon sets, as
+ * well as technical writing content are licensed under the terms of the
+ * Creative Commons Attribution-ShareAlike 4.0 International. See the License
+ * terms at http://creativecommons.org/licenses/by-sa/4.0/legalcode
+ *
+ */
+
+"use strict";
+
+(/**
+ * @param {Window} window
+ * @param {undefined} undefined
+ */
+	function (window, undefined) {
+
+	var Asc = window['Asc'];
+	var AscCommon = window['AscCommon'];
+
+	// Import
+	var prot;
+	var c_oAscMouseMoveDataTypes = AscCommon.c_oAscMouseMoveDataTypes;
+
+	var c_oAscColor = Asc.c_oAscColor;
+	var c_oAscFill = Asc.c_oAscFill;
+	var c_oAscFillBlipType = Asc.c_oAscFillBlipType;
+	var c_oAscChartTypeSettings = Asc.c_oAscChartTypeSettings;
+	var c_oAscTickMark = Asc.c_oAscTickMark;
+	var c_oAscAxisType = Asc.c_oAscAxisType;
+	// ---------------------------------------------------------------------------------------------------------------
+
+	var c_oAscArrUserColors = [16757719, 7929702, 56805, 10081791, 12884479, 16751001, 6748927, 16762931, 6865407,
+		15650047, 16737894, 3407768, 16759142, 10852863, 6750176, 16774656, 13926655, 13815039, 3397375, 11927347, 16752947,
+		9404671, 4980531, 16744678, 3407830, 15919360, 16731553, 52479, 13330175, 16743219, 3386367, 14221056, 16737966,
+		1896960, 65484, 10970879, 16759296, 16711680, 13496832, 62072, 49906, 16734720, 10682112, 7890687, 16731610, 65406,
+		38655, 16747008, 59890, 12733951, 15859712, 47077, 15050496, 15224319, 10154496, 58807, 16724950, 1759488, 9981439,
+		15064320, 15893248, 16724883, 58737, 15007744, 36594, 12772608, 12137471, 6442495, 15039488, 16718470, 14274816,
+		53721, 16718545, 1625088, 15881472, 13419776, 32985, 16711800, 1490688, 16711884, 8991743, 13407488, 41932, 7978752,
+		15028480, 52387, 15007927, 12114176, 1421824, 55726, 13041893, 10665728, 30924, 49049, 14241024, 36530, 11709440,
+		13397504, 45710, 34214];
+
+	function CreateAscColorCustom(r, g, b, auto) {
+		var ret = new asc_CColor();
+		ret.type = c_oAscColor.COLOR_TYPE_SRGB;
+		ret.r = r;
+		ret.g = g;
+		ret.b = b;
+		ret.a = 255;
+		ret.Auto = ( undefined === auto ? false : auto );
+		return ret;
+	}
+
+	function CreateAscColor(unicolor) {
+      if (null == unicolor || null == unicolor.color) {
+          return new asc_CColor();
+      }
+
+		var ret = new asc_CColor();
+		ret.r = unicolor.RGBA.R;
+		ret.g = unicolor.RGBA.G;
+		ret.b = unicolor.RGBA.B;
+		ret.a = unicolor.RGBA.A;
+
+		var _color = unicolor.color;
+		switch (_color.type) {
+			case c_oAscColor.COLOR_TYPE_SRGB:
+			case c_oAscColor.COLOR_TYPE_SYS: {
+				break;
+			}
+			case c_oAscColor.COLOR_TYPE_PRST:
+			case c_oAscColor.COLOR_TYPE_SCHEME: {
+				ret.type = _color.type;
+				ret.value = _color.id;
+				break;
+			}
+			default:
+				break;
+		}
+		return ret;
+	}
+
+	function CreateGUID()
+	{
+		function s4() { return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);	}
+
+		var val = '{' + s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4() + '}';
+		val = val.toUpperCase();
+		return val;
+	}
+
+	var c_oLicenseResult = {
+		Error         : 1,
+		Expired       : 2,
+		Success       : 3,
+		UnknownUser   : 4,
+		Connections   : 5,
+		ExpiredTrial  : 6,
+		SuccessLimit  : 7,
+		UsersCount    : 8,
+		ConnectionsOS : 9,
+		UsersCountOS  : 10
+	};
+
+	var c_oRights = {
+		None    : 0,
+		Edit    : 1,
+		Review  : 2,
+		Comment : 3,
+		View    : 4
+	};
+
+	var c_oLicenseMode = {
+		None: 0,
+		Trial: 1,
+		Developer: 2
+	};
+
+	var EPluginDataType = {
+		none: "none",
+		text: "text",
+		ole: "ole",
+		html: "html",
+        desktop: "desktop"
+	};
+
+	/** @constructor */
+	function asc_CSignatureLine()
+	{
+		this.id = undefined;
+		this.guid = "";
+		this.signer1 = "";
+		this.signer2 = "";
+		this.email = "";
+
+		this.instructions = "";
+		this.showDate = false;
+
+		this.valid = 0;
+
+		this.image = "";
+
+		this.date = "";
+		this.isvisible = false;
+		this.isrequested = false;
+	}
+	asc_CSignatureLine.prototype.correct = function()
+	{
+		if (this.id == null)
+			this.id = "0";
+		if (this.guid == null)
+			this.guid = "";
+		if (this.signer1 == null)
+			this.signer1 = "";
+		if (this.signer2 == null)
+			this.signer2 = "";
+		if (this.email == null)
+			this.email = "";
+		if (this.instructions == null)
+			this.instructions = "";
+		if (this.showDate == null)
+			this.showDate = false;
+		if (this.valid == null)
+			this.valid = 0;
+		if (this.image == null)
+			this.image = "";
+		if (this.date == null)
+			this.date = "";
+		if (this.isvisible == null)
+			this.isvisible = false;
+	};
+	asc_CSignatureLine.prototype.asc_getId = function(){ return this.id; };
+	asc_CSignatureLine.prototype.asc_setId = function(v){ this.id = v; };
+	asc_CSignatureLine.prototype.asc_getGuid = function(){ return this.guid; };
+	asc_CSignatureLine.prototype.asc_setGuid = function(v){ this.guid = v; };
+	asc_CSignatureLine.prototype.asc_getSigner1 = function(){ return this.signer1; };
+	asc_CSignatureLine.prototype.asc_setSigner1 = function(v){ this.signer1 = v; };
+	asc_CSignatureLine.prototype.asc_getSigner2 = function(){ return this.signer2; };
+	asc_CSignatureLine.prototype.asc_setSigner2 = function(v){ this.signer2 = v; };
+	asc_CSignatureLine.prototype.asc_getEmail = function(){ return this.email; };
+	asc_CSignatureLine.prototype.asc_setEmail = function(v){ this.email = v; };
+	asc_CSignatureLine.prototype.asc_getInstructions = function(){ return this.instructions; };
+	asc_CSignatureLine.prototype.asc_setInstructions = function(v){ this.instructions = v; };
+	asc_CSignatureLine.prototype.asc_getShowDate = function(){ return this.showDate; };
+	asc_CSignatureLine.prototype.asc_setShowDate = function(v){ this.showDate = v; };
+	asc_CSignatureLine.prototype.asc_getValid = function(){ return this.valid; };
+	asc_CSignatureLine.prototype.asc_setValid = function(v){ this.valid = v; };
+	asc_CSignatureLine.prototype.asc_getDate = function(){ return this.date; };
+	asc_CSignatureLine.prototype.asc_setDate = function(v){ this.date = v; };
+	asc_CSignatureLine.prototype.asc_getVisible = function(){ return this.isvisible; };
+	asc_CSignatureLine.prototype.asc_setVisible = function(v){ this.isvisible = v; };
+	asc_CSignatureLine.prototype.asc_getRequested = function(){ return this.isrequested; };
+	asc_CSignatureLine.prototype.asc_setRequested = function(v){ this.isrequested = v; };
+
+	/**
+	 * –ö–ª–∞—Å—Å asc_CAscEditorPermissions –¥–ª—è –ø—Ä–∞–≤ —Ä–µ–¥–∞–∫—Ç–æ—Ä–æ–≤
+	 * -----------------------------------------------------------------------------
+	 *
+	 * @constructor
+	 * @memberOf Asc
+	 */
+	function asc_CAscEditorPermissions() {
+		this.licenseType = c_oLicenseResult.Error;
+		this.licenseMode = c_oLicenseMode.None;
+		this.isLight = false;
+		this.rights = c_oRights.None;
+
+		this.canCoAuthoring = true;
+		this.canReaderMode = true;
+		this.canBranding = false;
+		this.isAutosaveEnable = true;
+		this.AutosaveMinInterval = 300;
+		this.isAnalyticsEnable = false;
+		this.buildVersion = null;
+		this.buildNumber = null;
+		return this;
+	}
+
+	asc_CAscEditorPermissions.prototype.asc_getLicenseType = function () {
+		return this.licenseType;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getCanCoAuthoring = function () {
+		return this.canCoAuthoring;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getCanReaderMode = function () {
+		return this.canReaderMode;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getCanBranding = function () {
+		return this.canBranding;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getIsAutosaveEnable = function () {
+		return this.isAutosaveEnable;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getAutosaveMinInterval = function () {
+		return this.AutosaveMinInterval;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getIsAnalyticsEnable = function () {
+		return this.isAnalyticsEnable;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getIsLight = function () {
+		return this.isLight;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getLicenseMode = function () {
+		return this.licenseMode;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getRights = function () {
+		return this.rights;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getBuildVersion = function () {
+		return this.buildVersion;
+	};
+	asc_CAscEditorPermissions.prototype.asc_getBuildNumber = function () {
+		return this.buildNumber;
+	};
+
+	asc_CAscEditorPermissions.prototype.setLicenseType = function (v) {
+		this.licenseType = v;
+	};
+	asc_CAscEditorPermissions.prototype.setCanBranding = function (v) {
+		this.canBranding = v;
+	};
+	asc_CAscEditorPermissions.prototype.setIsLight = function (v) {
+		this.isLight = v;
+	};
+	asc_CAscEditorPermissions.prototype.setLicenseMode = function (v) {
+		this.licenseMode = v;
+	};
+	asc_CAscEditorPermissions.prototype.setRights = function (v) {
+		this.rights = v;
+	};
+	asc_CAscEditorPermissions.prototype.setBuildVersion = function (v) {
+		this.buildVersion = v;
+	};
+	asc_CAscEditorPermissions.prototype.setBuildNumber = function (v) {
+		this.buildNumber = v;
+	};
+
+	/** @constructor */
+	function asc_ValAxisSettings() {
+		this.minValRule = null;
+		this.minVal = null;
+		this.maxValRule = null;
+		this.maxVal = null;
+		this.invertValOrder = null;
+		this.logScale = null;
+		this.logBase = null;
+
+		this.dispUnitsRule = null;
+		this.units = null;
+
+
+		this.showUnitsOnChart = null;
+		this.majorTickMark = null;
+		this.minorTickMark = null;
+		this.tickLabelsPos = null;
+		this.crossesRule = null;
+		this.crosses = null;
+		this.axisType = c_oAscAxisType.val;
+	}
+
+	asc_ValAxisSettings.prototype = {
+
+
+		isEqual: function(oPr){
+			if(!oPr){
+				return false;
+			}
+            if(this.minValRule !== oPr.minValRule){
+				return false;
+			}
+            if(this.minVal !== oPr.minVal){
+            	return false;
+			}
+            if(this.maxValRule !== oPr.maxValRule){
+            	return false;
+			}
+            if(this.maxVal !== oPr.maxVal){
+            	return false;
+			}
+            if(this.invertValOrder !== oPr.invertValOrder){
+            	return false;
+			}
+            if(this.logScale !== oPr.logScale){
+            	return false;
+			}
+            if(this.logBase !== oPr.logBase){
+            	return false;
+			}
+            if(this.dispUnitsRule !== oPr.dispUnitsRule){
+            	return false;
+			}
+            if(this.units !== oPr.units){
+            	return false;
+			}
+            if(this.showUnitsOnChart !== oPr.showUnitsOnChart){
+            	return false;
+			}
+            if(this.majorTickMark !== oPr.majorTickMark){
+            	return false;
+			}
+            if(this.minorTickMark !== oPr.minorTickMark){
+            	return false;
+			}
+            if(this.tickLabelsPos !== oPr.tickLabelsPos){
+            	return false;
+			}
+            if(this.crossesRule !== oPr.crossesRule){
+            	return false;
+			}
+            if(this.crosses !== oPr.crosses){
+            	return false;
+			}
+            if(this.axisType !== oPr.axisType){
+            	return false;
+			}
+
+			return true;
+		},
+
+		putAxisType: function (v) {
+			this.axisType = v;
+		},
+
+		putMinValRule: function (v) {
+			this.minValRule = v;
+		}, putMinVal: function (v) {
+			this.minVal = v;
+		}, putMaxValRule: function (v) {
+			this.maxValRule = v;
+		}, putMaxVal: function (v) {
+			this.maxVal = v;
+		}, putInvertValOrder: function (v) {
+			this.invertValOrder = v;
+		}, putLogScale: function (v) {
+			this.logScale = v;
+		}, putLogBase: function (v) {
+			this.logBase = v;
+		}, putUnits: function (v) {
+			this.units = v;
+		}, putShowUnitsOnChart: function (v) {
+			this.showUnitsOnChart = v;
+		}, putMajorTickMark: function (v) {
+			this.majorTickMark = v;
+		}, putMinorTickMark: function (v) {
+			this.minorTickMark = v;
+		}, putTickLabelsPos: function (v) {
+			this.tickLabelsPos = v;
+		}, putCrossesRule: function (v) {
+			this.crossesRule = v;
+		}, putCrosses: function (v) {
+			this.crosses = v;
+		},
+
+
+		putDispUnitsRule: function (v) {
+			this.dispUnitsRule = v;
+		},
+
+		getAxisType: function () {
+			return this.axisType;
+		},
+
+		getDispUnitsRule: function () {
+			return this.dispUnitsRule;
+		},
+
+		getMinValRule: function () {
+			return this.minValRule;
+		}, getMinVal: function () {
+			return this.minVal;
+		}, getMaxValRule: function () {
+			return this.maxValRule;
+		}, getMaxVal: function () {
+			return this.maxVal;
+		}, getInvertValOrder: function () {
+			return this.invertValOrder;
+		}, getLogScale: function () {
+			return this.logScale;
+		}, getLogBase: function () {
+			return this.logBase;
+		}, getUnits: function () {
+			return this.units;
+		}, getShowUnitsOnChart: function () {
+			return this.showUnitsOnChart;
+		}, getMajorTickMark: function () {
+			return this.majorTickMark;
+		}, getMinorTickMark: function () {
+			return this.minorTickMark;
+		}, getTickLabelsPos: function () {
+			return this.tickLabelsPos;
+		}, getCrossesRule: function () {
+			return this.crossesRule;
+		}, getCrosses: function () {
+			return this.crosses;
+		}, setDefault: function () {
+			this.putMinValRule(Asc.c_oAscValAxisRule.auto);
+			this.putMaxValRule(Asc.c_oAscValAxisRule.auto);
+			this.putTickLabelsPos(Asc.c_oAscTickLabelsPos.TICK_LABEL_POSITION_NEXT_TO);
+			this.putInvertValOrder(false);
+			this.putDispUnitsRule(Asc.c_oAscValAxUnits.none);
+			this.putMajorTickMark(c_oAscTickMark.TICK_MARK_OUT);
+			this.putMinorTickMark(c_oAscTickMark.TICK_MARK_NONE);
+			this.putCrossesRule(Asc.c_oAscCrossesRule.auto);
+		}
+	};
+
+	/** @constructor */
+	function asc_CatAxisSettings() {
+		this.intervalBetweenTick = null;
+		this.intervalBetweenLabelsRule = null;
+		this.intervalBetweenLabels = null;
+		this.invertCatOrder = null;
+		this.labelsAxisDistance = null;
+		this.majorTickMark = null;
+		this.minorTickMark = null;
+		this.tickLabelsPos = null;
+		this.crossesRule = null;
+		this.crosses = null;
+		this.labelsPosition = null;
+		this.axisType = c_oAscAxisType.cat;
+		this.crossMinVal = null;
+		this.crosINDX( 	 Ÿ^             (   ‡  Ë       ÷                    °H     h V     †H     WPÀÈõG÷LEÉÚw’WPÀÈõG÷WPÀÈõG÷                      
+i n d e x . d . t s   £H     h R     †H     ∑±ÕÈõG÷˝UÑÚw’∑±ÕÈõG÷∑±ÕÈõG÷»       ¬               i n d e x . j s . T S §H     h V     †H     ∑±ÕÈõG÷¿?ÖÚw’∑±ÕÈõG÷∑±ÕÈõG÷                      
+i n d e x . j s o n S ¶H     h V     †H     ˘˘€ÈõG÷çÜÚw’Y[ﬁÈõG÷˘˘€ÈõG÷»       ¡               
+i n d e x . w x m l S ßH     h V     †H     Y[ﬁÈõG ˛#àÚw’Y[ﬁÈõG÷Y[ﬁÈõG÷x       w               
+i n d e x . w x s s S °H     h X     †H     WPÀÈõG÷LEÉÚw’WPÀÈõG÷WPÀÈõG÷                      I N D E X D ~ 1 . T S §H     h X     †H     ∑±ÕÈõG÷¿?ÖÚw’∑±ÕÈõG÷∑±ÕÈõG÷                      I N D E X ~ 1 . J S O ¶H     h X     †H     ˘˘€ÈõG÷çÜÚw’Y[ﬁÈõG÷˘˘€ÈõG÷»       ¡               I N D E X ~ 1 . W X M ßH     h X     †H     Y[ﬁÈõG÷˛#àÚw’Y[ﬁÈõG÷Y[ﬁÈõG÷x       w               I N D E X ~ 1 . W X S                                                                                                                                                  
